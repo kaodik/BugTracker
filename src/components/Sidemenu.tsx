@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "../styles.css";
 import Dashboard from "../pages/Dashboard";
 import Reports from "../pages/Reports";
+import Bugs from "../pages/Bugs";
 
 export const Sidemenu: React.FC = () => {
-  const [page, setPage] = useState(<Dashboard />);
+  const [page, setPage] = useState(<Bugs />);
   const [txFull, setTxFull] = useState<string>("-translate-x-full");
   function openSidebar(): void {
     if (txFull === "") {
@@ -139,7 +140,10 @@ export const Sidemenu: React.FC = () => {
             </a>
             <a
               href="#"
-              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-700"
+              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-700 "
+              onClick={() => {
+                handleClick(<Bugs />);
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
