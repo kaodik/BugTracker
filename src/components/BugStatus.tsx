@@ -6,9 +6,9 @@ export default function BugStatus() {
       <div className="flex flex-row justify-between">
         <h2 className="text-lx pb-2">BugStatus</h2>
       </div>
-      <div className="border-2 rounded border-gray-400 bg-gray-50 h-20">
+      <div className="border-2 rounded border-gray-400 bg-gray-50 h-20 text-center">
         <table className="w-full">
-          <thead className="text-lg text-left bg-gray-200">
+          <thead className="text-lg bg-gray-200 p-40">
             <th>
               <button>Subject</button>
             </th>
