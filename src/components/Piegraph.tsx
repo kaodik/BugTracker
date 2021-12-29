@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Piegraph() {
   return (
-    <div className="w-96 h-96 text-blue-500 rounded-2xl bg-gray-500 p-2">
+    <div className="w-96 h-96 text-blue-200 rounded-2xl bg-blue-500 p-2">
       <div className="flex flex-row justify-between">
         <h2 className="text-lx pb-2">Piegraph stats</h2>
       </div>

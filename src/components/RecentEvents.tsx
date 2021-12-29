@@ -7,14 +7,14 @@ export default function RecentEvents() {
   let cYear = currentDate.getFullYear();
   let lastEvent = cDay + "/" + cMonth + "/" + cYear;
   return (
-    <div className="w-96 text-blue-500 rounded-2xl bg-gray-500 p-2">
-      <h2 className="text-lx pb-2">Recent Events</h2>
+    <div className="w-[600px] text-blue-600 rounded-2xl bg-blue-500 p-2">
+      <h2 className="text-lx pb-2 text-blue-200">Recent Events</h2>
       <div>
         <div>
-          <h3 className="text-base pl-4"> {lastEvent}</h3>
+          <h3 className="text-base pl-4 text-blue-200"> {lastEvent}</h3>
         </div>
 
-        <div className="border-2 rounded border-gray-400 bg-gray-50 h-20 text-base p-2">
+        <div className="border-2 rounded border-blue-400 bg-blue-50  text-base p-2">
           <p>
             image of account, Steven Trumblay edited the members of this project
             timestamp

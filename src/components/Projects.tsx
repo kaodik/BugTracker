@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Projects() {
   return (
-    <div className="w-96 text-blue-500 rounded-2xl bg-gray-500 p-2">
+    <div className="w-96 text-blue-200 rounded-2xl bg-blue-500 p-2">
       <div className="flex flex-row justify-between">
         <h2 className="text-lx pb-2">Projects</h2>
         <button>
@@ -22,7 +22,7 @@ export default function Projects() {
           </svg>
         </button>
       </div>
-      <div className="border-2 rounded border-gray-400 bg-gray-50 h-20 text-base p-2">
+      <div className="border-2 rounded text-blue-600 border-blue-400 bg-blue-50 h-20 text-base p-2">
         New project
       </div>
     </div>

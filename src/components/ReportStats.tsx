@@ -2,13 +2,13 @@ import React from "react";
 
 export default function ReportStats() {
   return (
-    <div className="w-3/6 text-blue-500 rounded-2xl bg-gray-500 p-2">
+    <div className="w-3/6 text-blue-500 rounded-2xl bg-blue-500 p-2">
       <div className="flex flex-row justify-between">
-        <h2 className="text-lx pb-2">ReportsStats</h2>
+        <h2 className="text-lx pb-2 text-blue-200">ReportsStats</h2>
       </div>
       <div className="">
-        <table className="text-left bg-gray-200 h-96 w-full rounded-xl ">
-          <thead className="bg-gray-300">
+        <table className="text-left bg-blue-200 h-96 w-full rounded-xl ">
+          <thead className="bg-blue-300">
             <th className="rounded-tl-xl pl-5">Category</th>
             <th>Closed</th>
             <th>Open</th>

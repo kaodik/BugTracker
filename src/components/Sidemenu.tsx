@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Reports from "../pages/Reports";
 import Bugs from "../pages/Bugs";
 import Timesheet from "../pages/Timesheet";
+import LoginForm from "./LoginForm";
 
 export const Sidemenu: React.FC = () => {
   const [page, setPage] = useState(<Reports />);
@@ -21,7 +22,7 @@ export const Sidemenu: React.FC = () => {
   return (
     <div className="relative min-h-screen md:flex ">
       {/* mobile sidebar */}
-      <div className="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+      <div className="bg-blue-800 text-blue-100 flex justify-between md:hidden">
         {/* logo */}
         <a href="#" className="block p-4 text-white font-bold">
           Better Dev
@@ -49,12 +50,12 @@ export const Sidemenu: React.FC = () => {
       </div>
       {/* desktop Sidebar */}
       <div
-        className={`z-10 bg-blue-400 text-blue-100 w-20 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform ${txFull} md:relative md:translate-x-0 transition duration-200 ease-in-out`}
+        className={`z-10 bg-blue-700 text-blue-100 w-20 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform ${txFull} md:relative md:translate-x-0 transition duration-200 ease-in-out`}
       >
         {/* top nav links */}
         <div className="flex flex-col items-center">
           <button
-            className="px-4 p-4 bg-blue-500 hover:bg-blue-700 mb-4 transition duration-500 rounded-full"
+            className="px-4 p-4 bg-blue-600 hover:bg-blue-800 mb-4 transition duration-500 rounded-full"
             onClick={() => {
               openSidebar();
             }}
@@ -78,7 +79,7 @@ export const Sidemenu: React.FC = () => {
           <nav className="space-y-4">
             <a
               href="#"
-              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex  hover:bg-blue-700"
+              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex  hover:bg-blue-800"
               onClick={() => {
                 handleClick(<Dashboard />);
               }}
@@ -100,7 +101,7 @@ export const Sidemenu: React.FC = () => {
             </a>
             <a
               href="#"
-              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-700"
+              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-800"
               onClick={() => {
                 handleClick(<Reports />);
               }}
@@ -122,7 +123,7 @@ export const Sidemenu: React.FC = () => {
             </a>
             <a
               href="#"
-              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-700"
+              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-800"
               onClick={() => {
                 handleClick(<Timesheet />);
               }}
@@ -144,7 +145,7 @@ export const Sidemenu: React.FC = () => {
             </a>
             <a
               href="#"
-              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-700 "
+              className="rounded-full p-4 transition duration-500 py2.5 px-4 flex items-center hover:bg-blue-800 "
               onClick={() => {
                 handleClick(<Bugs />);
               }}
@@ -170,7 +171,7 @@ export const Sidemenu: React.FC = () => {
             <div className="pt-48 space-y-3">
               <a
                 href="#"
-                className="flex px-4 p-4 hover:bg-blue-700 transition duration-500 rounded-full"
+                className="flex px-4 p-4 hover:bg-blue-800 transition duration-500 rounded-full"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +190,7 @@ export const Sidemenu: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="flex px-4 p-4 hover:bg-blue-700 transition duration-500 rounded-full"
+                className="flex px-4 p-4 hover:bg-blue-800 transition duration-500 rounded-full"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +209,7 @@ export const Sidemenu: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="flex px-4 p-4 hover:bg-blue-700 transition duration-500 rounded-full"
+                className="flex px-4 p-4 hover:bg-blue-800 transition duration-500 rounded-full"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -231,30 +232,30 @@ export const Sidemenu: React.FC = () => {
       </div>
       <div className="flex">
         <div
-          className={` bg-blue-400  px-2 py-28 text-blue-100  absolute inset-y-0 left-0 transform ${txFull} relative transition duration-200 ease-in-out`}
+          className={` bg-blue-700  px-2 py-28 text-blue-100  absolute inset-y-0 left-0 transform ${txFull} relative transition duration-200 ease-in-out`}
         >
           <nav className="flex flex-col space-y-12 pb-0 pt-2 ">
             <a
               href="#"
-              className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+              className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
             >
               Dashboard
             </a>
             <a
               href="#"
-              className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+              className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
             >
               Reports
             </a>
             <a
               href="#"
-              className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+              className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
             >
               Timesheet
             </a>
             <a
               href="#"
-              className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+              className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
             >
               Bugs
             </a>
@@ -263,19 +264,19 @@ export const Sidemenu: React.FC = () => {
             <div className="pt-56 space-y-11">
               <a
                 href="#"
-                className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+                className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
               >
                 alert
               </a>
               <a
                 href="#"
-                className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+                className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
               >
                 tools
               </a>
               <a
                 href="#"
-                className="flex px-4 hover:bg-blue-700 transition duration-500 rounded"
+                className="flex px-4 hover:bg-blue-800 transition duration-500 rounded"
               >
                 account
               </a>
