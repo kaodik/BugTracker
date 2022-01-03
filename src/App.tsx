@@ -114,7 +114,12 @@ export default function App() {
           label={"Settings"}
         />
       </Navbar>
-      <Sidemenu />
+      <div className="flex flex-row">
+        <Sidemenu />{" "}
+        <div className="bg-blue-800 h-9 w-9">
+          <p>This allows me to add pages on this end</p>
+        </div>
+      </div>
     </div>
   );
 }

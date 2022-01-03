@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ReportStats() {
   return (
-    <div className="w-3/6 text-blue-500 rounded-2xl bg-blue-500 p-2">
+    <div className="w-4/6 text-blue-500 rounded-2xl bg-blue-500 p-2">
       <div className="flex flex-row justify-between">
         <h2 className="text-lx pb-2 text-blue-200">ReportsStats</h2>
       </div>
