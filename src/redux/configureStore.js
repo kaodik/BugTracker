@@ -1,13 +1,13 @@
-// import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 // import createSagaMiddleware from 'redux-saga';
-// import counterReducer from './ducks/exampleCounter';
+import counterReducer from './ducks/exampleCounter';
 // import userReducer from './ducks/user';
 // import { watcherSaga } from './sagas/rootSaga';
-
-// const reducer = combineReducers({
-//   counter: counterReducer,
-//   user: userReducer,
-// });
+const reducer = combineReducers({
+  counter: counterReducer,
+  //   user: userReducer,
+});
+const store = createStore(reducer);
 
 // const sagaMiddleware = createSagaMiddleware();
 
@@ -17,4 +17,4 @@
 
 // sagaMiddleware.run(watcherSaga);
 
-// export default store;
+export default store;
