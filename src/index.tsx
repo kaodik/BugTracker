@@ -1,17 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import "./styles.css";
-import App from "./App";
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './styles.css';
+import App from './App';
+import { Provider } from 'react-redux';
+// import store from './redux/configureStore';
 export const Index: React.FC = () => {
   return (
-    <div>
-      <BrowserRouter>
+    <React.StrictMode>
+      <Provider>
+        {/*store={store}> */}
         <App />
-      </BrowserRouter>
-    </div>
+      </Provider>
+    </React.StrictMode>
   );
 };
 
-ReactDOM.render(<Index />, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById('root'));
