@@ -1,21 +1,39 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
+import { useDispatch } from 'react-redux';
+import { getProject } from '../redux/ducks/project';
 
 export default function Projects() {
-  const [projectName, setProjectName] = useState([]);
-  const getProjects = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/project');
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setProjectName(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  // const [projectName, setProjectName] = useState([]);
+  const project = useSelector((state: RootState) => state.project.project);
+  // console.log(...project);
+  // const d = [...project];
 
-  useEffect(() => {
-    getProjects();
-  }, []);
+  const [p] = project;
+
+  p ? console.log(p.name) : console.log('bye');
+
+  // setProjectName(project);
+  // console.log(projectName);
+  // useEffect(() => {
+  //   setProjectName([...project]);
+  //   console.log(projectName);
+  // }, []);
+  // console.log(...project);
+  // const getProjects = async () => {
+  //   try {
+
+  //     console.log(project);
+  //     setProjectName(project);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getProjects();
+  // }, []);
   return (
     <div className='w-96 text-blue-200 rounded-2xl bg-blue-500 p-2'>
       <div className='flex flex-row justify-between'>
@@ -39,9 +57,10 @@ export default function Projects() {
       </div>
       <>
         <div className='border-2 rounded text-blue-600 border-blue-400 bg-blue-50 h-20 text-base p-2'>
-          {projectName.map((pName) => (
-            <div>{pName.name}</div>
-          ))}
+          {/* {project.map((pName: any) => (
+            <div>{pName}</div>
+          ))} */}
+          {p ? p.name : 'loading'}
         </div>
       </>
     </div>

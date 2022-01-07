@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Sidemenu } from './components/Sidemenu';
 import { Route } from 'react-router-dom';
 import Navbar, { NavItem, DropdownMenu } from './components/Navbar';
-import Dashboard from './pages/Dashboard';
-import { useDispatch, useSelector } from 'react-redux';
-//import React, {useEffect} from 'react;
+import { DefaultRootState, useDispatch, useSelector } from 'react-redux';
+import { RootState } from './redux/configureStore';
+import { getProject } from './redux/ducks/project';
 
 export default function App() {
-  //const count = useSelector(state => state.counter.count)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProject());
+  }, []);
+  const project = useSelector((state: RootState) => state.project.project);
+  //const project = useSelector((state: RootState) => state.project.project);
+  // console.log(project);
+
+  // const { pageTracker } = useSelector((state: RootState) => state);
+  // console.log(useSelector((state) => state));
+  // const page = useSelector((state) => state);
+  const page = useSelector((state: RootState) => state.pageTracker.page);
+  //const page = useSelector((state) => state.pages);
+  //const count = useSelector(state => state.exampleCounter.count)
   //The commented code below should go to the component that will update the state.IE this will go to sideMenu
   //const dispatch = useDispatch();
   //const hanndleIncrement = () =>{dispatch(increment())};
@@ -131,10 +144,8 @@ export default function App() {
         />
       </Navbar>
       <div className='flex flex-row'>
-        <Sidemenu />{' '}
-        <div className='bg-blue-800 h-9 w-9'>
-          <p>This allows me to add pages on this end</p>
-        </div>
+        <Sidemenu />
+        <div className='flex-1 p-10 text-2xl font-bold '>{page}</div>
       </div>
     </div>
   );
