@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Sidemenu } from './components/Sidemenu';
-import { Route } from 'react-router-dom';
 import Navbar, { NavItem, DropdownMenu } from './components/Navbar';
-import { DefaultRootState, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
 

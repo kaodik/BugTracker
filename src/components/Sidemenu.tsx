@@ -292,8 +292,6 @@ export const Sidemenu: React.FC = () => {
           </nav>
         </div>
       </div>
-
-      {/* <div className='flex-1 p-10 text-2xl font-bold '>{page}</div> */}
     </div>
   );
 };
