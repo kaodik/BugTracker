@@ -4,11 +4,13 @@ import Navbar, { NavItem, DropdownMenu } from './components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
+import { getBug } from './redux/ducks/bug';
 
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProject());
+    dispatch(getBug());
   }, []);
   const project = useSelector((state: RootState) => state.project.project);
   //const project = useSelector((state: RootState) => state.project.project);

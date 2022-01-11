@@ -38,6 +38,47 @@ app.post('/project', async (req, res) => {
     console.error(err.message);
   }
 });
+app.get('/bug', async (req, res) => {
+  try {
+    const allProjects = await pool.query('SELECT * FROM bug');
+    res.json(allProjects.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.post('/bug', async (req, res) => {
+  try {
+    // test the post with thunder and this line of code  res.json(req.body)
+    const {
+      subject,
+      description,
+      status,
+      category,
+      priortity,
+      createddate,
+      startdate,
+      duedate,
+    } = req.body;
+    const newProject = await pool.query(
+      'INSERT INTO bug(subject, description, status, category, priortity, createddate, startdate, duedate) VALUES' +
+        '($1) RETURNING *',
+      [
+        subject,
+        description,
+        status,
+        category,
+        priortity,
+        createddate,
+        startdate,
+        duedate,
+      ]
+    );
+
+    res.json(newProject.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
 });

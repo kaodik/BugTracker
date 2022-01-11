@@ -2,11 +2,13 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import pageReducer from './ducks/page.js';
 import projectReducer from './ducks/project';
+import bugReducer from './ducks/bug';
 import { watcherSaga } from './sagas/rootSaga.js';
 
 const reducer = combineReducers({
   pageTracker: pageReducer,
   project: projectReducer,
+  bug: bugReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

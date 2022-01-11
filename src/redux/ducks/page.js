@@ -33,7 +33,7 @@ export const report = () => ({
 });
 //init state
 const initialState = {
-  page: <Bug />,
+  page: <Dashboard />,
 };
 
 //reducer

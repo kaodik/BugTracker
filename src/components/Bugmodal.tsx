@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function bugModal({ closeModal }: any) {
+  const [bug, setBug] = useState({
+    subject: '',
+    Assignee: '',
+    Status: '',
+    Priority: '',
+    DueDate: '',
+  });
+  function handleEventChange(event: any) {
+    // const name = event.target.value;
+    console.log(event.target.value);
+    setBug(event.target.value);
+  }
+  const handleFormSubmission = async (e: any) => {
+    e.preventDefault(); // this line prevents refreashing the page before all actions are complete
+    try {
+      const body = { bug };
+      //proxy is only use in development so it will be ignored in production
+      //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
+      //remember this heroku app is just our server serving the build static content and also
+      //holding the restful api.
+
+      //https://pern-todo-app-demo.herokuapp.com/todos
+      const response = await fetch('http://localhost:5000/project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      window.location.reload();
+      console.log(response);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   return (
     <div className='w-[99%] h-[90%] bg-blue-200 absolute -translate-x-64 -translate-y-56 flex justify-center items-center'>
-      <div className='w-[500px] h-[500px] rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
+      <div className='w-[500px]  rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <button
           onClick={() => closeModal(false)}
-          className='bg-rose-400 rounded-md text-white w-14 text-2xl text-gray-900 font-bold absolute right-[43rem]'
+          className='bg-rose-400 rounded-md text-white w-14 text-2xl text-gray-900 font-bold ml-96'
         >
           X
         </button>
@@ -15,6 +48,10 @@ export default function bugModal({ closeModal }: any) {
           <form action=''>
             <div className='pb-5'>
               <label htmlFor=''>Subject: </label>
+              <input type='text' className='rounded-md' />
+            </div>
+            <div className='pb-5'>
+              <label htmlFor=''>Description: </label>
               <input type='text' className='rounded-md' />
             </div>
             <div className='pb-5'>
@@ -27,7 +64,7 @@ export default function bugModal({ closeModal }: any) {
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
               >
-                <option value='All' label='All'></option>
+                <option label='' value=''></option>
                 <option
                   value='Steven Trumblay'
                   label='Steven Trumblay'
@@ -60,6 +97,20 @@ export default function bugModal({ closeModal }: any) {
               >
                 <option value='High' label='High'></option>
                 <option value='Medium' label='Medium'></option>
+              </select>
+            </div>
+            <div className='pb-5'>
+              <label className='pr-3' htmlFor=''>
+                Category:{' '}
+              </label>
+              <select
+                name=''
+                id=''
+                placeholder='All'
+                className='text-blue-500 bg-blue-200 rounded-lg'
+              >
+                <option value='1' label='Frontend'></option>
+                <option value='2' label='Backend'></option>
               </select>
             </div>
             <div className='pb-5'>

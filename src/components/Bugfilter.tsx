@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Bugmodal from './Bugmodal';
-
 export default function Bugfilter() {
   const [openModal, setOpenModal] = useState(false);
 
