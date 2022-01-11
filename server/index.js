@@ -54,20 +54,22 @@ app.post('/bug', async (req, res) => {
       description,
       status,
       category,
-      priortity,
+      priority,
+      assignee,
       createddate,
       startdate,
       duedate,
     } = req.body;
     const newProject = await pool.query(
-      'INSERT INTO bug(subject, description, status, category, priortity, createddate, startdate, duedate) VALUES' +
-        '($1) RETURNING *',
+      'INSERT INTO bug(subject, description, status, category, priority, assignee, createddate, startdate, duedate) VALUES' +
+        '($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
       [
         subject,
         description,
         status,
         category,
-        priortity,
+        priority,
+        assignee,
         createddate,
         startdate,
         duedate,

@@ -3,15 +3,137 @@ import React, { useState } from 'react';
 export default function bugModal({ closeModal }: any) {
   const [bug, setBug] = useState({
     subject: '',
-    Assignee: '',
-    Status: '',
-    Priority: '',
-    DueDate: '',
+    description: '',
+    status: '',
+    category: '',
+    priority: '',
+    assignee: '',
+    createddate: '',
+    startdate: '',
+    duedate: '',
   });
   function handleEventChange(event: any) {
     // const name = event.target.value;
-    console.log(event.target.value);
-    setBug(event.target.value);
+    const newValue = event.target.value;
+    const inputName = event.target.name;
+
+    console.log(newValue);
+    console.log(inputName);
+    setBug((prevValue) => {
+      switch (inputName) {
+        case 'subject':
+          return {
+            subject: newValue,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'description':
+          return {
+            subject: prevValue.subject,
+            description: newValue,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'status':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: newValue,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'category':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: newValue,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'priority':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: newValue,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'assignee':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: newValue,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'createddate':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: prevValue.duedate,
+          };
+        case 'startdate':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: newValue,
+            duedate: prevValue.duedate,
+          };
+        case 'duedate':
+          return {
+            subject: prevValue.subject,
+            description: prevValue.description,
+            status: prevValue.status,
+            category: prevValue.category,
+            priority: prevValue.priority,
+            assignee: prevValue.assignee,
+            createddate: prevValue.createddate,
+            startdate: prevValue.startdate,
+            duedate: newValue,
+          };
+
+        default:
+          break;
+      }
+    });
   }
   const handleFormSubmission = async (e: any) => {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
@@ -39,7 +161,7 @@ export default function bugModal({ closeModal }: any) {
       <div className='w-[500px]  rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <button
           onClick={() => closeModal(false)}
-          className='bg-rose-400 rounded-md text-white w-14 text-2xl text-gray-900 font-bold ml-96'
+          className='bg-rose-400 rounded-md w-14 text-2xl text-gray-900 font-bold ml-96'
         >
           X
         </button>
@@ -48,18 +170,29 @@ export default function bugModal({ closeModal }: any) {
           <form action=''>
             <div className='pb-5'>
               <label htmlFor=''>Subject: </label>
-              <input type='text' className='rounded-md' />
+              <input
+                name='subject'
+                onChange={handleEventChange}
+                type='text'
+                className='rounded-md'
+              />
             </div>
             <div className='pb-5'>
               <label htmlFor=''>Description: </label>
-              <input type='text' className='rounded-md' />
+              <input
+                name='description'
+                onChange={handleEventChange}
+                type='text'
+                className='rounded-md'
+              />
             </div>
             <div className='pb-5'>
               <label className='pr-3' htmlFor=''>
                 Assignee:
               </label>
               <select
-                name=''
+                name='assignee'
+                onChange={handleEventChange}
                 id=''
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
@@ -76,7 +209,8 @@ export default function bugModal({ closeModal }: any) {
                 Status:
               </label>
               <select
-                name=''
+                name='status'
+                onChange={handleEventChange}
                 id=''
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
@@ -87,10 +221,11 @@ export default function bugModal({ closeModal }: any) {
             </div>
             <div className='pb-5'>
               <label className='pr-3' htmlFor=''>
-                Priority:{' '}
+                Priority:
               </label>
               <select
-                name=''
+                name='priority'
+                onChange={handleEventChange}
                 id=''
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
@@ -101,10 +236,11 @@ export default function bugModal({ closeModal }: any) {
             </div>
             <div className='pb-5'>
               <label className='pr-3' htmlFor=''>
-                Category:{' '}
+                Category:
               </label>
               <select
-                name=''
+                name='category'
+                onChange={handleEventChange}
                 id=''
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
@@ -117,7 +253,12 @@ export default function bugModal({ closeModal }: any) {
               <label className='pr-3' htmlFor=''>
                 Due Date
               </label>
-              <input type='date' className='rounded-md text-center' />
+              <input
+                name='duedate'
+                onChange={handleEventChange}
+                type='date'
+                className='rounded-md text-center'
+              />
             </div>
             <div className='pl-3 pt-5 text-center space-x-10 text-black'>
               <button className='bg-amber-400 font-bold text-2xl rounded-md pl-2 pr-2'>

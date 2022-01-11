@@ -47,6 +47,19 @@ export default function BugDataGrid() {
               <td></td>
               <td>dec 25, 2022</td>
             </tr>
+            {bug
+              ? bug.map((bugData: any) => (
+                  <tr className='table-row bg-blue-200 boarder-t'>
+                    <td>{bugData.subject}</td>
+                    <td>{bugData.assignee}</td>
+                    <td>{bugData.status}</td>
+                    <td>{bugData.priority}</td>
+                    <td>{bugData.createddate}</td>
+                    <td>{bugData.startdate}</td>
+                    <td>{bugData.duedate}</td>
+                  </tr>
+                ))
+              : 'loading...'}
           </tbody>
         </table>
       </div>
@@ -161,16 +174,6 @@ export default function BugDataGrid() {
           </div>
         </div>
       </div>
-      {bug
-        ? bug.map((bugData: any) => (
-            <div>
-              {bugData.subject}
-              {bugData.status}
-
-              {bugData.createddate}
-            </div>
-          ))
-        : 'loading...'}
     </div>
   );
 }
