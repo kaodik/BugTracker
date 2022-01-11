@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 
 export default function bugModal({ closeModal }: any) {
+  const d = new Date();
   const [bug, setBug] = useState({
     subject: '',
     description: '',
-    status: '',
-    category: '',
-    priority: '',
-    assignee: '',
-    createddate: '',
-    startdate: '',
-    duedate: '',
+    status: 'Open',
+    category: 'Frontend',
+    priority: 'High',
+    assignee: 'N/A',
+    createddate: ` ${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`,
+    startdate: 'N/A',
+    duedate: 'N/A',
   });
   function handleEventChange(event: any) {
-    // const name = event.target.value;
-    const newValue = event.target.value;
-    const inputName = event.target.name;
-
-    console.log(newValue);
-    console.log(inputName);
+    const { value, name } = event.target;
+    console.log(bug);
+    // console.log(value);
+    // console.log(name);
     setBug((prevValue) => {
-      switch (inputName) {
+      switch (name) {
         case 'subject':
           return {
-            subject: newValue,
+            subject: value,
             description: prevValue.description,
             status: prevValue.status,
             category: prevValue.category,
@@ -36,7 +35,7 @@ export default function bugModal({ closeModal }: any) {
         case 'description':
           return {
             subject: prevValue.subject,
-            description: newValue,
+            description: value,
             status: prevValue.status,
             category: prevValue.category,
             priority: prevValue.priority,
@@ -49,7 +48,7 @@ export default function bugModal({ closeModal }: any) {
           return {
             subject: prevValue.subject,
             description: prevValue.description,
-            status: newValue,
+            status: value,
             category: prevValue.category,
             priority: prevValue.priority,
             assignee: prevValue.assignee,
@@ -62,7 +61,7 @@ export default function bugModal({ closeModal }: any) {
             subject: prevValue.subject,
             description: prevValue.description,
             status: prevValue.status,
-            category: newValue,
+            category: value,
             priority: prevValue.priority,
             assignee: prevValue.assignee,
             createddate: prevValue.createddate,
@@ -75,7 +74,7 @@ export default function bugModal({ closeModal }: any) {
             description: prevValue.description,
             status: prevValue.status,
             category: prevValue.category,
-            priority: newValue,
+            priority: value,
             assignee: prevValue.assignee,
             createddate: prevValue.createddate,
             startdate: prevValue.startdate,
@@ -88,7 +87,7 @@ export default function bugModal({ closeModal }: any) {
             status: prevValue.status,
             category: prevValue.category,
             priority: prevValue.priority,
-            assignee: newValue,
+            assignee: value,
             createddate: prevValue.createddate,
             startdate: prevValue.startdate,
             duedate: prevValue.duedate,
@@ -114,7 +113,7 @@ export default function bugModal({ closeModal }: any) {
             priority: prevValue.priority,
             assignee: prevValue.assignee,
             createddate: prevValue.createddate,
-            startdate: newValue,
+            startdate: value,
             duedate: prevValue.duedate,
           };
         case 'duedate':
@@ -127,7 +126,7 @@ export default function bugModal({ closeModal }: any) {
             assignee: prevValue.assignee,
             createddate: prevValue.createddate,
             startdate: prevValue.startdate,
-            duedate: newValue,
+            duedate: value,
           };
 
         default:
@@ -138,14 +137,15 @@ export default function bugModal({ closeModal }: any) {
   const handleFormSubmission = async (e: any) => {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
     try {
-      const body = { bug };
+      const body = bug;
+
       //proxy is only use in development so it will be ignored in production
       //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
       //remember this heroku app is just our server serving the build static content and also
       //holding the restful api.
 
       //https://pern-todo-app-demo.herokuapp.com/todos
-      const response = await fetch('http://localhost:5000/project', {
+      const response = await fetch('http://localhost:5000/bug', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -167,7 +167,7 @@ export default function bugModal({ closeModal }: any) {
         </button>
         <div>
           <div className='pt-9 pb-3'>Bug Form</div>
-          <form action=''>
+          <form action='' onSubmit={handleFormSubmission}>
             <div className='pb-5'>
               <label htmlFor=''>Subject: </label>
               <input
@@ -217,6 +217,7 @@ export default function bugModal({ closeModal }: any) {
               >
                 <option value='Open' label='Open'></option>
                 <option value='Inprogress' label='Inprogress'></option>
+                <option value='Close' label='Close'></option>
               </select>
             </div>
             <div className='pb-5'>

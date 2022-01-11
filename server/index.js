@@ -81,6 +81,7 @@ app.post('/bug', async (req, res) => {
     console.error(err.message);
   }
 });
+
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
 });
