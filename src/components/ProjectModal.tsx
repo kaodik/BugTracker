@@ -34,7 +34,7 @@ export default function ProjectModal({ closeModal }: any) {
       <div className='w-[500px] h-[300px] rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <button
           onClick={() => closeModal(false)}
-          className='bg-rose-400 rounded-md text-white w-14 text-2xl text-gray-900 font-bold ml-96'
+          className='bg-rose-400 rounded-md w-14 text-2xl text-gray-900 font-bold ml-96'
         >
           X
         </button>
