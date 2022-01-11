@@ -4,15 +4,41 @@ import { RootState } from '../redux/configureStore';
 
 export default function ReportStats() {
   const bug = useSelector((state: RootState) => state.bug.bug);
-  const [openFE, setOpenFE] = useState(0);
-  const open = bug.filter(
-    (b: { catgetory: string; status: string }) =>
-      b.catgetory === 'Frontend' && b.status === 'Open'
+  const openf = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Frontend' && b.status === 'Open'
   );
-  let dcout = open.length;
+  const closef = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Frontend' && b.status === 'Close'
+  );
+  const inprogf = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Frontend' && b.status === 'Inprogress'
+  );
+  const inprogb = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Backend' && b.status === 'Inprogress'
+  );
+  const closeb = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Backend' && b.status === 'Open'
+  );
+  const openb = bug.filter(
+    (b: { category: string; status: string }) =>
+      b.category === 'Backend' && b.status === 'Close'
+  );
+  let openfCount = openf.length;
+  let closefCount = closef.length;
+  let inprogfCount = inprogf.length;
+  let openbCount = inprogb.length;
+  let closebCount = closeb.length;
+  let inprogbCount = inprogb.length;
+
+  // console.log(open.length);
   // console.log(open);
   // setOpenFE(open.length);
-  console.log(bug.length);
+  // console.log(bug.length);
   return (
     <div className='w-4/6 text-blue-500 rounded-2xl bg-blue-500 p-2'>
       <div className='flex flex-row justify-between'>
@@ -25,24 +51,19 @@ export default function ReportStats() {
             <th>Closed</th>
             <th>Open</th>
             <th>In Progress</th>
-            <th className='rounded-tr-xl'>Resovle</th>
           </thead>
           <tbody>
             <tr>
               <td className='pl-5'>Frontend</td>
-              <td>9</td>
-              <td>20</td>
-              {bug ? 'hello' : 'loading...'}
-              {openFE}
-              <td>40</td>
-              <td>3943</td>
+              <td>{bug ? closefCount : 'loading...'}</td>
+              <td>{bug ? openfCount : 'loading...'}</td>
+              <td>{bug ? inprogfCount : 'loading...'}</td>
             </tr>
             <tr>
               <td className='pl-5'>Backend</td>
-              <td>6</td>
-              <td>45</td>
-              <td>34</td>
-              <td>393</td>
+              <td>{bug ? closebCount : 'loading...'}</td>
+              <td>{bug ? openbCount : 'loading...'}</td>
+              <td>{bug ? inprogbCount : 'loading...'}</td>
             </tr>
           </tbody>
         </table>

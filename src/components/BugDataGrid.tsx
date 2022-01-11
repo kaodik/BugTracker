@@ -4,7 +4,7 @@ import { RootState } from '../redux/configureStore';
 
 export default function BugDataGrid() {
   const bug = useSelector((state: RootState) => state.bug.bug);
-  console.log(bug);
+  // console.log(bug);
   return (
     <div className='w-full text-blue-700 bg-blue-500 h-60 rounded-2xl '>
       <div className=' rounded-t-2xl h-2 bg-blue-300'></div>

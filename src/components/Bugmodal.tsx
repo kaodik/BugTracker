@@ -246,8 +246,8 @@ export default function bugModal({ closeModal }: any) {
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
               >
-                <option value='1' label='Frontend'></option>
-                <option value='2' label='Backend'></option>
+                <option value='Frontend' label='Frontend'></option>
+                <option value='Backend' label='Backend'></option>
               </select>
             </div>
             <div className='pb-5'>
