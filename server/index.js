@@ -81,6 +81,14 @@ app.post('/bug', async (req, res) => {
     console.error(err.message);
   }
 });
+app.get('/time', async (req, res) => {
+  try {
+    const allTimes = await pool.query('SELECT * FROM time');
+    res.json(allTimes.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.post('/time', async (req, res) => {
   try {
     // test the post with thunder and this line of code  res.json(req.body)

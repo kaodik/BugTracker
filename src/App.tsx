@@ -5,14 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
 import { getBug } from './redux/ducks/bug';
+import { getTime } from './redux/ducks/time';
 
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProject());
     dispatch(getBug());
+    dispatch(getTime());
   }, []);
-
+  // const time = useSelector((state: RootState) => state.time.time);
   //const project = useSelector((state: RootState) => state.project.project);
   // console.log(project);
 

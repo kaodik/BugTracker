@@ -1,9 +1,36 @@
 import React, { useState } from 'react';
 import TimeModal from './TimeModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
 
 export default function TimeSheet() {
+  const time = useSelector((state: RootState) => state.time.time);
+
   const [openModal, setOpenModal] = useState(false);
-  console.log(openModal);
+
+  //Filters---------------------------------------------------------------
+  const mon = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 0
+  );
+  const tue = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 1
+  );
+  const wen = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 2
+  );
+  const thur = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 3
+  );
+  const fri = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 4
+  );
+  const sat = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 5
+  );
+  const sun = time.filter(
+    (day: { startdate: string }) => new Date(day.startdate).getDay() === 6
+  );
+
   return (
     <div>
       {openModal && <TimeModal closeModal={setOpenModal} />}
@@ -37,31 +64,87 @@ export default function TimeSheet() {
         <div className='flex flex-row text-center min-h-screen p-4 text-blue-700'>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52  rounded-l-xl'>
             <div className='bg-blue-300 rounded-tl-xl'>Sun</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? sun.map((sunData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {sunData.bugname}
+                    <p className='text-sm'>Start Time: {sunData.starttime}</p>
+                    <p className='text-sm'>Start End: {sunData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52 '>
             <div className='bg-blue-300 '>Mon</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? mon.map((monData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {monData.bugname}
+                    <p className='text-sm'>Start Time: {monData.starttime}</p>
+                    <p className='text-sm'>Start End: {monData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52 '>
             <div className='bg-blue-300 '>Tue</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? tue.map((tueData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {tueData.bugname}
+                    <p className='text-sm'>Start Time: {tueData.starttime}</p>
+                    <p className='text-sm'>Start End: {tueData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52 '>
             <div className='bg-blue-300 '>Wen</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? wen.map((wenData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {wenData.bugname}
+                    <p className='text-sm'>Start Time: {wenData.starttime}</p>
+                    <p className='text-sm'>Start End: {wenData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52 '>
             <div className='bg-blue-300 '>Thu</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? thur.map((thurData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {thurData.bugname}
+                    <p className='text-sm'>Start Time: {thurData.starttime}</p>
+                    <p className='text-sm'>Start End: {thurData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 border-r-2 w-52 '>
             <div className='bg-blue-300 '>Fri</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? fri.map((friData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {friData.bugname}
+                    <p className='text-sm'>Start Time: {friData.starttime}</p>
+                    <p className='text-sm'>Start End: {friData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
           <div className='bg-blue-400 border-blue-500 w-52 rounded-tr-xl rounded-r-xl'>
             <div className='bg-blue-300 rounded-tr-xl'>Sat</div>
-            <div className='rounded-xl h-20 bg-blue-200 m-2'></div>
+            {time
+              ? sat.map((satData: any) => (
+                  <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    {satData.bugname}
+                    <p className='text-sm'>Start Time: {satData.starttime}</p>
+                    <p className='text-sm'>Start End: {satData.endtime}</p>
+                  </div>
+                ))
+              : 'loading...'}
           </div>
         </div>
       </div>

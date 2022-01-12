@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
 
 export default function ProjectModal({ closeModal }: any) {
+  const bug = useSelector((state: RootState) => state.bug.bug);
+  const bugNameList = bug.filter(
+    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
+  );
+
   const [time, setTime] = useState({
-    bugname: 'testName',
-    startdate: 'test startDate',
-    starttime: 'test startTime',
-    enddate: 'test enddate',
-    endtime: 'test endtime',
+    bugname: bug ? bugNameList[0].subject : 'None',
+    startdate: 'None',
+    starttime: 'None',
+    enddate: 'None',
+    endtime: 'None',
   });
+  console.log(time);
   function handleEventChange(event: any) {
-    // const name = event.target.value;
     const { value, name } = event.target;
     setTime((prevValue) => {
       switch (name) {
@@ -23,35 +30,35 @@ export default function ProjectModal({ closeModal }: any) {
           };
         case 'startdate':
           return {
-            bugname: value,
-            startdate: prevValue.startdate,
+            bugname: prevValue.bugname,
+            startdate: value,
             starttime: prevValue.starttime,
             enddate: prevValue.enddate,
             endtime: prevValue.endtime,
           };
         case 'starttime':
           return {
-            bugname: value,
+            bugname: prevValue.bugname,
             startdate: prevValue.startdate,
-            starttime: prevValue.starttime,
+            starttime: value,
             enddate: prevValue.enddate,
             endtime: prevValue.endtime,
           };
         case 'enddate':
           return {
-            bugname: value,
+            bugname: prevValue.bugname,
             startdate: prevValue.startdate,
             starttime: prevValue.starttime,
-            enddate: prevValue.enddate,
+            enddate: value,
             endtime: prevValue.endtime,
           };
         case 'endtime':
           return {
-            bugname: value,
+            bugname: prevValue.bugname,
             startdate: prevValue.startdate,
             starttime: prevValue.starttime,
             enddate: prevValue.enddate,
-            endtime: prevValue.endtime,
+            endtime: value,
           };
         default:
           break;
@@ -61,14 +68,14 @@ export default function ProjectModal({ closeModal }: any) {
   const handleFormSubmission = async (e: any) => {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
     try {
-      const body = { name };
+      const body = time;
       //proxy is only use in development so it will be ignored in production
       //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
       //remember this heroku app is just our server serving the build static content and also
       //holding the restful api.
 
       //https://pern-todo-app-demo.herokuapp.com/todos
-      const response = await fetch('http://localhost:5000/project', {
+      const response = await fetch('http://localhost:5000/time', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -95,13 +102,20 @@ export default function ProjectModal({ closeModal }: any) {
             <div className='pb-2'>
               <label htmlFor=''>Bug Name: </label>
               <select
-                name='BugName'
+                name='bugname'
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
                 className='text-blue-500 bg-blue-200 rounded-lg'
               >
-                {/* this spot needs to map the options from the bug data. */}
+                {bug
+                  ? bugNameList.map((bname: any) => (
+                      <option
+                        value={bname.subject}
+                        label={bname.subject}
+                      ></option>
+                    ))
+                  : 'loading...'}
                 <option value='High' label='High'></option>
                 <option value='Medium' label='Medium'></option>
               </select>
@@ -109,7 +123,7 @@ export default function ProjectModal({ closeModal }: any) {
             <div className='pb-2'>
               <label htmlFor=''>Start Date: </label>
               <input
-                name='startDate'
+                name='startdate'
                 type='date'
                 className='rounded-md'
                 onChange={handleEventChange}
@@ -118,7 +132,7 @@ export default function ProjectModal({ closeModal }: any) {
             <div className='pb-2'>
               <label htmlFor=''>Start Time: </label>
               <input
-                name='startTime'
+                name='starttime'
                 type='time'
                 className='rounded-md'
                 onChange={handleEventChange}
@@ -129,7 +143,7 @@ export default function ProjectModal({ closeModal }: any) {
                 End Date:
               </label>
               <input
-                name='endDate'
+                name='enddate'
                 type='date'
                 className='rounded-md'
                 onChange={handleEventChange}
@@ -140,7 +154,7 @@ export default function ProjectModal({ closeModal }: any) {
                 End Time:
               </label>
               <input
-                name='endTime'
+                name='endtime'
                 type='time'
                 className='rounded-md'
                 onChange={handleEventChange}
