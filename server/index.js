@@ -60,7 +60,7 @@ app.post('/bug', async (req, res) => {
       startdate,
       duedate,
     } = req.body;
-    const newProject = await pool.query(
+    const newBug = await pool.query(
       'INSERT INTO bug(subject, description, status, category, priority, assignee, createddate, startdate, duedate) VALUES' +
         '($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
       [
@@ -76,7 +76,22 @@ app.post('/bug', async (req, res) => {
       ]
     );
 
-    res.json(newProject.rows[0]);
+    res.json(newBug.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.post('/time', async (req, res) => {
+  try {
+    // test the post with thunder and this line of code  res.json(req.body)
+    const { bugname, startdate, starttime, enddate, endtime } = req.body;
+    const newTime = await pool.query(
+      'INSERT INTO time(bugname, startdate, starttime, enddate, endtime) VALUES' +
+        '($1,$2,$3,$4,$5) RETURNING *',
+      [bugname, startdate, starttime, enddate, endtime]
+    );
+
+    res.json(newTime.rows[0]);
   } catch (err) {
     console.error(err.message);
   }

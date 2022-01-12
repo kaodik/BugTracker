@@ -12,7 +12,7 @@ export default function App() {
     dispatch(getProject());
     dispatch(getBug());
   }, []);
-  const project = useSelector((state: RootState) => state.project.project);
+
   //const project = useSelector((state: RootState) => state.project.project);
   // console.log(project);
 
