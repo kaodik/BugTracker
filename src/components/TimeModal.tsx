@@ -15,7 +15,6 @@ export default function ProjectModal({ closeModal }: any) {
     enddate: 'None',
     endtime: 'None',
   });
-  console.log(time);
   function handleEventChange(event: any) {
     const { value, name } = event.target;
     setTime((prevValue) => {

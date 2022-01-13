@@ -7,7 +7,6 @@ export default function BugStatus() {
   const bugNameList = bug.filter(
     (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
   );
-  console.log(bugNameList);
   return (
     <div className='w-[450px] text-blue-500 rounded-2xl bg-blue-500 p-2'>
       <div className='flex flex-row justify-between'>
