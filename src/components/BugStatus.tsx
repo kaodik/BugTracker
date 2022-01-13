@@ -7,12 +7,13 @@ export default function BugStatus() {
   const bugNameList = bug.filter(
     (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
   );
+  console.log(bugNameList);
   return (
     <div className='w-[450px] text-blue-500 rounded-2xl bg-blue-500 p-2'>
       <div className='flex flex-row justify-between'>
         <h2 className='text-lx pb-2 text-blue-200'>BugStatus</h2>
       </div>
-      <div className='border-2 rounded border-blue-400 bg-blue-50 h-20 text-center'>
+      <div className='border-2 rounded border-blue-400 bg-blue-50 text-center'>
         <table className='w-full'>
           <thead className='text-lg bg-blue-200 p-40'>
             <th>
@@ -26,11 +27,15 @@ export default function BugStatus() {
             </th>
           </thead>
           <tbody className='text-sm'>
-            <tr>
-              <td>Navbar bug</td>
-              <td>open</td>
-              <td>05/12/21</td>
-            </tr>
+            {bug
+              ? bugNameList.map((bname: any) => (
+                  <tr>
+                    <td>{bname.subject}</td>
+                    <td>{bname.status}</td>
+                    <td>{bname.duedate}</td>
+                  </tr>
+                ))
+              : 'loading...'}
           </tbody>
         </table>
       </div>
