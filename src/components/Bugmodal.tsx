@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getBug } from '../redux/ducks/bug';
 
 export default function bugModal({ closeModal }: any) {
+  const dispatch = useDispatch();
   const d = new Date();
   const [bug, setBug] = useState({
     subject: '',
@@ -15,7 +18,7 @@ export default function bugModal({ closeModal }: any) {
   });
   function handleEventChange(event: any) {
     const { value, name } = event.target;
-    console.log(bug);
+    // console.log(bug);
     // console.log(value);
     // console.log(name);
     setBug((prevValue) => {
@@ -136,9 +139,9 @@ export default function bugModal({ closeModal }: any) {
   }
   const handleFormSubmission = async (e: any) => {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
+
     try {
       const body = bug;
-
       //proxy is only use in development so it will be ignored in production
       //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
       //remember this heroku app is just our server serving the build static content and also
@@ -150,11 +153,13 @@ export default function bugModal({ closeModal }: any) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      window.location.reload();
+      // window.location.reload();
       console.log(response);
     } catch (err) {
       console.error(err.message);
     }
+    dispatch(getBug());
+    // console.log(bugs);
   };
   return (
     <div className='w-[99%] h-[90%] bg-blue-200 absolute -translate-x-64 -translate-y-56 flex justify-center items-center'>

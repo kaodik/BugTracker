@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import '../styles.css';
-import Dashboard from '../pages/Dashboard';
-import Reports from '../pages/Reports';
-import Bugs from '../pages/Bugs';
-import Timesheet from '../pages/Timesheet';
-import LoginForm from './LoginForm';
 import { useDispatch } from 'react-redux';
 import {
   account,
@@ -246,24 +241,36 @@ export const Sidemenu: React.FC = () => {
             <a
               href='#'
               className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
+              onClick={() => {
+                handlePage(dashboard());
+              }}
             >
               Dashboard
             </a>
             <a
               href='#'
               className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
+              onClick={() => {
+                handlePage(report());
+              }}
             >
               Reports
             </a>
             <a
               href='#'
               className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
+              onClick={() => {
+                handlePage(timesheet());
+              }}
             >
               Timesheet
             </a>
             <a
               href='#'
               className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
+              onClick={() => {
+                handlePage(bug());
+              }}
             >
               Bugs
             </a>

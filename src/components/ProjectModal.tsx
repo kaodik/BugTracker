@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getProject } from '../redux/ducks/project';
 
 export default function ProjectModal({ closeModal }: any) {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   function handleEventChange(event: any) {
     // const name = event.target.value;
@@ -22,11 +25,12 @@ export default function ProjectModal({ closeModal }: any) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      window.location.reload();
+      // window.location.reload();
       console.log(response);
     } catch (err) {
       console.error(err.message);
     }
+    dispatch(getProject());
   };
 
   return (

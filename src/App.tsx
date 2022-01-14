@@ -6,6 +6,7 @@ import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
 import { getBug } from './redux/ducks/bug';
 import { getTime } from './redux/ducks/time';
+import { account, dashboard } from './redux/ducks/page';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ export default function App() {
   // to get the data
   //const user = userSelector((state)=> state.user.user);
   //console.log(user);
+  const handlePage = (prop: any) => {
+    dispatch(prop);
+  };
   return (
     <div className='bg-blue-200 min-h-full'>
       <Navbar>
@@ -57,6 +61,9 @@ export default function App() {
             </svg>
           }
           label={'Dashboard'}
+          onClick={() => {
+            handlePage(dashboard());
+          }}
         />
         <NavItem
           icon={

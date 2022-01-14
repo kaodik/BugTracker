@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/configureStore';
+import { getTime } from '../redux/ducks/time';
 
 export default function ProjectModal({ closeModal }: any) {
+  const dispatch = useDispatch();
+
   const bug = useSelector((state: RootState) => state.bug.bug);
   const bugNameList = bug.filter(
     (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
@@ -79,11 +82,12 @@ export default function ProjectModal({ closeModal }: any) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      window.location.reload();
+      // window.location.reload();
       console.log(response);
     } catch (err) {
       console.error(err.message);
     }
+    dispatch(getTime());
   };
 
   return (
