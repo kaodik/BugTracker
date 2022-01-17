@@ -20,7 +20,8 @@ export default function App() {
   // const time = useSelector((state: RootState) => state.time.time);
   //const project = useSelector((state: RootState) => state.project.project);
   // console.log(project);
-
+  const getAccounts = useSelector((state: RootState) => state.account.account);
+  console.log(getAccounts);
   // const { pageTracker } = useSelector((state: RootState) => state);
   // console.log(useSelector((state) => state));
   // const page = useSelector((state) => state);

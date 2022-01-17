@@ -7,7 +7,7 @@ export default function AlertDisplay() {
   const bugNameList = bug.filter(
     (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
   );
-  bug ? console.log(bugNameList.length) : 'loading';
+  // bug ? console.log(bugNameList.length) : 'loading';
   return (
     <div className='w-80 text-blue-200 rounded-2xl bg-blue-500 p-2'>
       <div className='flex flex-row justify-between'>
