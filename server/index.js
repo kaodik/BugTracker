@@ -105,22 +105,40 @@ app.post('/time', async (req, res) => {
   }
 });
 
-app.get('/account', async (req, res) => {
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
   try {
-    const allAccounts = await pool.query('SELECT * FROM account');
-    res.json(allAccounts.rows);
+    const allAccounts = await pool.query(
+      'SELECT * FROM account WHERE username= $1 AND password= $2',
+      [username, password],
+      (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results.rows);
+        if (results.rows.length > 0) {
+          //more than one user prevent user from useing that name.
+        }
+        if (results.rows.length === 0) {
+          console.log('user Not found');
+        }
+      }
+    );
+    res.json({ status: 'ok' });
   } catch (err) {
     console.error(err.message);
+    console.log('user/password not found', { status: 'error' });
   }
 });
 app.post('/account', async (req, res) => {
   try {
     // test the post with thunder and this line of code  res.json(req.body)
-    const { username, password, fname, lname, privilege, org } = req.body;
+    const { username, password, email, fname, lname, privilege, org } =
+      req.body;
     const newAccount = await pool.query(
-      'INSERT INTO account(username, password, fname, lname, privilege, org) VALUES' +
-        '($1,$2,$3,$4,$5,$6) RETURNING *',
-      [username, password, fname, lname, privilege, org]
+      'INSERT INTO account(username, password, email,fname, lname, privilege, org) VALUES' +
+        '($1,$2,$3,$4,$5,$6,$7) RETURNING *',
+      [username, password, email, fname, lname, privilege, org]
     );
 
     res.json(newAccount.rows[0]);
