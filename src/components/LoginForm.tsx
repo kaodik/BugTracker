@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import RegFormModal from './RegFormModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
 
 export default function LoginForm() {
+  const getAccounts = useSelector((state: RootState) => state.account.account);
+
   const [reg, setReg] = useState(false);
   function handleRegBtn() {
     setReg(!reg);

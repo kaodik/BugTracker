@@ -113,36 +113,21 @@ app.get('/account', async (req, res) => {
     console.error(err.message);
   }
 });
-// app.post('/account', async (req, res) => {
-//   try {
-//     // test the post with thunder and this line of code  res.json(req.body)
-//     const {
-//       subject,
-//       description,
-//       status,
-//       category,
-//       priority,
-//       assignee,
-//       createddate,
-//       startdate,
-//       duedate,
-//     } = req.body;
-//     const newBug = await pool.query(
-//       'INSERT INTO bug(subject, description, status, category, priority, assignee, createddate, startdate, duedate) VALUES' +
-//         '($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
-//       [
-//         subject,
-//         description,
-//         status,
-//         category,
-//         priority,
-//         assignee,
-//         createddate,
-//         startdate,
-//         duedate,
-//       ]
-//     );
+app.post('/account', async (req, res) => {
+  try {
+    // test the post with thunder and this line of code  res.json(req.body)
+    const { username, password, fname, lname, privilege, org } = req.body;
+    const newAccount = await pool.query(
+      'INSERT INTO account(username, password, fname, lname, privilege, org) VALUES' +
+        '($1,$2,$3,$4,$5,$6) RETURNING *',
+      [username, password, fname, lname, privilege, org]
+    );
 
+    res.json(newAccount.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
 });
