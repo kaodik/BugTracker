@@ -126,6 +126,9 @@ export default function App() {
             </svg>
           }
           label={'Account'}
+          onClick={() => {
+            handlePage(account());
+          }}
         />
         <NavItem
           icon={

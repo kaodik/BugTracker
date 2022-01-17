@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
 
 export default function Navbar(props: any) {
+  const bug = useSelector((state: RootState) => state.bug.bug);
+  const bugNameList = bug.filter(
+    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
+  );
   return (
     <nav className='Navbar flex justify-between bg-blue-700 h-14'>
       <a

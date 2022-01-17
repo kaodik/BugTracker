@@ -8,13 +8,18 @@ import {
   report,
   timesheet,
 } from '../redux/ducks/page';
+import AlertDisplay from './AlertDisplay';
 
 export const Sidemenu: React.FC = () => {
   const dispatch = useDispatch();
   const handlePage = (prop: any) => {
     dispatch(prop);
   };
-  const [txFull, setTxFull] = useState<string>('-translate-x-full');
+  const [txFull, setTxFull] = useState('-translate-x-full');
+
+  const [alertDisplay, setAlertDisplay] = useState<string>(
+    '-translate-x-[33rem]'
+  );
   function openSidebar(): void {
     if (txFull === '') {
       return setTxFull('-translate-x-full');
@@ -22,8 +27,15 @@ export const Sidemenu: React.FC = () => {
       return setTxFull('');
     }
   }
+  function openAlertDiplay(): void {
+    if (alertDisplay === '-translate-x-[33rem]') {
+      return setAlertDisplay('-translate-x-[8rem]');
+    } else {
+      return setAlertDisplay('-translate-x-[33rem]');
+    }
+  }
   return (
-    <div className='relative min-h-screen md:flex '>
+    <div className={`relative w-44 min-h-screen md:flex `}>
       {/* mobile sidebar */}
       <div className='bg-blue-800 text-blue-100 flex justify-between md:hidden'>
         {/* logo */}
@@ -53,7 +65,7 @@ export const Sidemenu: React.FC = () => {
       </div>
       {/* desktop Sidebar */}
       <div
-        className={`z-10 bg-blue-700 text-blue-100 w-20 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform ${txFull} md:relative md:translate-x-0 transition duration-200 ease-in-out`}
+        className={`z-10 bg-blue-700 text-blue-100 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform  md:relative md:translate-x-0 transition duration-200 ease-in-out`}
       >
         {/* top nav links */}
         <div className='flex flex-col items-center'>
@@ -175,6 +187,7 @@ export const Sidemenu: React.FC = () => {
               <a
                 href='#'
                 className='flex px-4 p-4 hover:bg-blue-800 transition duration-500 rounded-full'
+                onClick={openAlertDiplay}
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -213,6 +226,9 @@ export const Sidemenu: React.FC = () => {
               <a
                 href='#'
                 className='flex px-4 p-4 hover:bg-blue-800 transition duration-500 rounded-full'
+                onClick={() => {
+                  handlePage(account());
+                }}
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -235,7 +251,7 @@ export const Sidemenu: React.FC = () => {
       </div>
       <div className='flex'>
         <div
-          className={` bg-blue-700  px-2 py-28 text-blue-100  absolute inset-y-0 left-0 transform ${txFull} relative transition duration-200 ease-in-out`}
+          className={` bg-blue-700  px-2 py-28 text-blue-100  w-32 absolute inset-y-0 left-0 transform ${txFull} relative transition duration-200 ease-in-out`}
         >
           <nav className='flex flex-col space-y-12 pb-0 pt-2 '>
             <a
@@ -292,12 +308,20 @@ export const Sidemenu: React.FC = () => {
               <a
                 href='#'
                 className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
+                onClick={() => {
+                  handlePage(bug());
+                }}
               >
                 account
               </a>
             </div>
           </nav>
         </div>
+      </div>
+      <div
+        className={`  px-2 py-28 text-blue-100  w-0 h-0 absolute inset-y-0 left-0 transform ${alertDisplay} translate-y-64 relative transition duration-200 ease-in-out`}
+      >
+        <AlertDisplay />
       </div>
     </div>
   );
