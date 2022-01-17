@@ -6,6 +6,7 @@ import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
 import { getBug } from './redux/ducks/bug';
 import { getTime } from './redux/ducks/time';
+import { getAccount } from './redux/ducks/account';
 import { account, dashboard } from './redux/ducks/page';
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
     dispatch(getProject());
     dispatch(getBug());
     dispatch(getTime());
+    dispatch(getAccount());
   }, []);
   // const time = useSelector((state: RootState) => state.time.time);
   //const project = useSelector((state: RootState) => state.project.project);

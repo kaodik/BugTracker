@@ -1,4 +1,4 @@
-export const GET_ACCONT = 'GET_ACCOUNT';
+export const GET_ACCOUNT = 'GET_ACCOUNT';
 const SET_ACCOUNT = 'SET_ACCOUNT';
 
 export const getAccount = () => ({
