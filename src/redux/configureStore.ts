@@ -5,12 +5,14 @@ import projectReducer from './ducks/project';
 import bugReducer from './ducks/bug';
 import { watcherSaga } from './sagas/rootSaga.js';
 import timeReducer from './ducks/time';
+import accountReducer from './ducks/account';
 
 const reducer = combineReducers({
   pageTracker: pageReducer,
   project: projectReducer,
   bug: bugReducer,
   time: timeReducer,
+  account: accountReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
