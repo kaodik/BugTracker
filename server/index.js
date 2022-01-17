@@ -105,6 +105,44 @@ app.post('/time', async (req, res) => {
   }
 });
 
+app.get('/account', async (req, res) => {
+  try {
+    const allAccounts = await pool.query('SELECT * FROM account');
+    res.json(allAccounts.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+// app.post('/account', async (req, res) => {
+//   try {
+//     // test the post with thunder and this line of code  res.json(req.body)
+//     const {
+//       subject,
+//       description,
+//       status,
+//       category,
+//       priority,
+//       assignee,
+//       createddate,
+//       startdate,
+//       duedate,
+//     } = req.body;
+//     const newBug = await pool.query(
+//       'INSERT INTO bug(subject, description, status, category, priority, assignee, createddate, startdate, duedate) VALUES' +
+//         '($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
+//       [
+//         subject,
+//         description,
+//         status,
+//         category,
+//         priority,
+//         assignee,
+//         createddate,
+//         startdate,
+//         duedate,
+//       ]
+//     );
+
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
 });
