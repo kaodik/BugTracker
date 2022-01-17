@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RegFormModal from './RegFormModal';
 
 export default function LoginForm() {
+  const [reg, setReg] = useState(false);
+  function handleRegBtn() {
+    setReg(!reg);
+  }
   return (
-    <div className='ml-96 w-96 rounded-2xl shadow-lg shadow-blue-800'>
+    <div className='ml-96 h-64 w-96 rounded-2xl shadow-lg shadow-blue-800'>
       <form
         action=''
-        className='w-96  text-center rounded-xl p-3 flex flex-col  bg-transparent shadow-inner shadow-blue-300'
+        className='w-96 text-center rounded-xl p-3 flex flex-col  bg-transparent shadow-inner shadow-blue-300'
       >
         <span className='text-blue-600 pb-2'>Login Form</span>
         <div className='space-y-2'>
@@ -30,6 +35,7 @@ export default function LoginForm() {
           <a
             href='#'
             className='text-base text-left focus:outline-none focus:ring focus:ring-transparent'
+            onClick={handleRegBtn}
           >
             Registration
           </a>
@@ -38,6 +44,7 @@ export default function LoginForm() {
           Submit
         </button>
       </form>
+      {reg && <RegFormModal reg={setReg} />}
     </div>
   );
 }
