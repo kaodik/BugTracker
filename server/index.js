@@ -125,7 +125,7 @@ app.post('/login', async (req, res) => {
         if (results.rows.length === 0) {
           // console.log('user Not found');
           // console.log('user/password not found', { status: 'error' });
-          const n = 'user not found';
+          const n = false;
           res.send(n);
         }
       }

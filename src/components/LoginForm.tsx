@@ -5,11 +5,16 @@ import { RootState } from '../redux/configureStore';
 import axios, { Axios } from 'axios';
 import { response } from 'express';
 import { dashboard } from '../redux/ducks/page';
+import { requestPostLogin } from '../redux/sagas/request/login';
+import { handlePostLogin } from '../redux/sagas/handlers/login';
+import { getLogin } from '../redux/ducks/login';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const getAccounts = useSelector((state: RootState) => state.account.account);
   const page = useSelector((state: RootState) => state.pageTracker.page);
+
+  const loginBool = useSelector((state: RootState) => state.login);
 
   const handlePage = (prop: any) => {
     dispatch(dashboard());
@@ -52,7 +57,10 @@ export default function LoginForm() {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
 
     try {
-      const body = account;
+      // dispatch(handlePostLogin(account));
+      dispatch(getLogin(account));
+
+      // const body = account;
       //proxy is only use in development so it will be ignored in production
       //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
       //remember this heroku app is just our server serving the build static content and also
@@ -66,22 +74,25 @@ export default function LoginForm() {
       //   body: JSON.stringify(body),
       // });
       //the t is sent from the BE to the FE after a response comes through.
-      axios.post('http://localhost:5000/login', body).then((t) => {
-        console.log(t);
-        if (t.data === true) {
-          console.log('IT works');
-          handlePage(dashboard());
-          //put something here to toggle the nav and side bar it should start off.
-        } else {
-          console.log('user not found');
-        }
-      });
+      // axios.post('http://localhost:5000/login', body).then((t) => {
+      //   console.log(t);
+      //   if (t.data === true) {
+      //     console.log('IT works');
+      //     handlePage(dashboard());
+      //     //put something here to toggle the nav and side bar it should start off.
+      //   } else {
+      //     console.log('user not found');
+      //   }
+      // });
       // window.location.reload();
     } catch (err) {
       console.error(err.message);
     }
     // dispatch(getAccount());
     // console.log(bugs);
+    if (loginBool.login === true) {
+      dispatch(dashboard());
+    }
   };
 
   return (

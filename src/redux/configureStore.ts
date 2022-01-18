@@ -6,6 +6,7 @@ import bugReducer from './ducks/bug';
 import { watcherSaga } from './sagas/rootSaga.js';
 import timeReducer from './ducks/time';
 import accountReducer from './ducks/account';
+import loginReducer from './ducks/login.js';
 
 const reducer = combineReducers({
   pageTracker: pageReducer,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   bug: bugReducer,
   time: timeReducer,
   account: accountReducer,
+  login: loginReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

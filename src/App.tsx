@@ -7,6 +7,7 @@ import { getProject } from './redux/ducks/project';
 import { getBug } from './redux/ducks/bug';
 import { getTime } from './redux/ducks/time';
 import { getAccount } from './redux/ducks/account';
+import { getLogin } from './redux/ducks/login';
 import { account, dashboard } from './redux/ducks/page';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
     dispatch(getBug());
     dispatch(getTime());
     dispatch(getAccount());
+    dispatch(getLogin());
   }, []);
   // const time = useSelector((state: RootState) => state.time.time);
   //const project = useSelector((state: RootState) => state.project.project);
@@ -23,6 +25,7 @@ export default function App() {
   // const { pageTracker } = useSelector((state: RootState) => state);
   // console.log(useSelector((state) => state));
   // const page = useSelector((state) => state);
+  const loginBool = useSelector((state: RootState) => state.login);
   const page = useSelector((state: RootState) => state.pageTracker.page);
   //const page = useSelector((state) => state.pages);
   //const count = useSelector(state => state.exampleCounter.count)
@@ -38,6 +41,7 @@ export default function App() {
   // to get the data
   //const user = userSelector((state)=> state.user.user);
   //console.log(user);
+
   const handlePage = (prop: any) => {
     dispatch(prop);
   };
