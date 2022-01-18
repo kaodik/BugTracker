@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { getAccount } from '../redux/ducks/account';
 
 export default function LoginForm({ closeReg }: any) {
+  const [valColor, setValColor] = useState({
+    user: 'bg-blue-300',
+    pass: 'bg-blue-300',
+    email: 'bg-blue-300',
+    fname: 'bg-blue-300',
+    lname: 'bg-blue-300',
+    org: 'bg-blue-300',
+  });
   const [account, setAccount] = useState({
     username: '',
     password: '',
@@ -96,27 +104,89 @@ export default function LoginForm({ closeReg }: any) {
   }
   const handleFormSubmission = async (e: any) => {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
+    let minNumChar = 6;
+    let maxNumChar = 16;
+    let regExpressPassword =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    let regExpressUsername = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    setValColor({
+      user: 'bg-blue-300',
+      pass: 'bg-blue-300',
+      email: 'bg-blue-300',
+      fname: 'bg-blue-300',
+      lname: 'bg-blue-300',
+      org: 'bg-blue-300',
+    });
 
-    try {
-      const body = account;
-      //proxy is only use in development so it will be ignored in production
-      //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
-      //remember this heroku app is just our server serving the build static content and also
-      //holding the restful api.
-
-      //https://pern-todo-app-demo.herokuapp.com/todos
-      const response = await fetch('http://localhost:5000/account', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+    if (account.password === '' || account.username === '') {
+      setValColor({
+        user: 'bg-rose-300',
+        pass: 'bg-rose-300',
+        email: 'bg-blue-300',
+        fname: 'bg-blue-300',
+        lname: 'bg-blue-300',
+        org: 'bg-blue-300',
       });
-      // window.location.reload();
-      console.log(response);
-    } catch (err) {
-      console.error(err.message);
+      alert("User and password can't be blank");
+    } else if (
+      account.password.length < minNumChar ||
+      account.password.length > maxNumChar
+    ) {
+      setValColor({
+        user: 'bg-blue-300',
+        pass: 'bg-rose-300',
+        email: 'bg-blue-300',
+        fname: 'bg-blue-300',
+        lname: 'bg-blue-300',
+        org: 'bg-blue-300',
+      });
+      alert(
+        'Password must be between 6 and 16 characters with at lest one number and one special character'
+      );
+    } else if (!regExpressPassword.test(account.password)) {
+      setValColor({
+        user: 'bg-blue-300',
+        pass: 'bg-rose-300',
+        email: 'bg-blue-300',
+        fname: 'bg-blue-300',
+        lname: 'bg-blue-300',
+        org: 'bg-blue-300',
+      });
+      alert(
+        'Password must include at lest one number and one special character'
+      );
+    } else if (regExpressUsername.test(account.username)) {
+      setValColor({
+        user: 'bg-rose-300',
+        pass: 'bg-blue-300',
+        email: 'bg-blue-300',
+        fname: 'bg-blue-300',
+        lname: 'bg-blue-300',
+        org: 'bg-blue-300',
+      });
+      alert('Username must not have special characters');
+    } else {
+      try {
+        const body = account;
+        //proxy is only use in development so it will be ignored in production
+        //so if there is no http://locolhost:5000 then by default it is going to use heroku domain
+        //remember this heroku app is just our server serving the build static content and also
+        //holding the restful api.
+
+        //https://pern-todo-app-demo.herokuapp.com/todos
+        const response = await fetch('http://localhost:5000/account', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        // window.location.reload();
+        console.log(response);
+      } catch (err) {
+        console.error(err.message);
+      }
+      // dispatch(getAccount());
+      // console.log(bugs);
     }
-    // dispatch(getAccount());
-    // console.log(bugs);
   };
   return (
     <div className='mt-8 w-96 rounded-2xl shadow-lg shadow-blue-800'>
@@ -129,22 +199,22 @@ export default function LoginForm({ closeReg }: any) {
           <input
             name='username'
             type='text'
-            placeholder='Username'
-            className='placeholder-blue-600 rounded-lg pl-24 w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent  '
+            placeholder='*Username'
+            className={`placeholder-blue-600 rounded-lg pl-24 w-11/12 shadow-inner shadow-black ${valColor.user} focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input
             name='password'
             type='text'
-            placeholder='Password'
-            className='placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent'
+            placeholder='*Password'
+            className={`placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black ${valColor.pass} focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input
             name='email'
             type='text'
-            placeholder='Email'
-            className='placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent'
+            placeholder='*Email'
+            className={`placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black ${valColor.email} focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input

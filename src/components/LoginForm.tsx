@@ -2,13 +2,23 @@ import React, { useState } from 'react';
 import RegFormModal from './RegFormModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/configureStore';
+import axios, { Axios } from 'axios';
+import { response } from 'express';
+import { dashboard } from '../redux/ducks/page';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const getAccounts = useSelector((state: RootState) => state.account.account);
+  const page = useSelector((state: RootState) => state.pageTracker.page);
+
+  const handlePage = (prop: any) => {
+    dispatch(dashboard());
+  };
   const [account, setAccount] = useState({
-    username: 'kaoadmin',
-    password: 'kaokaoson',
+    // username: 'kaoadmin',
+    // password: 'kaokaoson',
+    username: '',
+    password: '',
   });
 
   const [reg, setReg] = useState(false);
@@ -49,22 +59,31 @@ export default function LoginForm() {
       //holding the restful api.
 
       //https://pern-todo-app-demo.herokuapp.com/todos
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+
+      // const response = await fetch('http://localhost:5000/login', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(body),
+      // });
+      //the t is sent from the BE to the FE after a response comes through.
+      axios.post('http://localhost:5000/login', body).then((t) => {
+        console.log(t);
+        if (t.data === true) {
+          console.log('IT works');
+          handlePage(dashboard());
+          //put something here to toggle the nav and side bar it should start off.
+        } else {
+          console.log('user not found');
+        }
       });
       // window.location.reload();
-      console.log(JSON.stringify(response));
     } catch (err) {
-      console.log('user not found');
       console.error(err.message);
-      if (!err?.response) {
-      }
     }
     // dispatch(getAccount());
     // console.log(bugs);
   };
+
   return (
     <div className='ml-96 h-64 w-96 rounded-2xl shadow-lg shadow-blue-800'>
       <form
@@ -78,14 +97,14 @@ export default function LoginForm() {
             name='username'
             type='text'
             placeholder='Username'
-            className='placeholder-blue-600 rounded-lg text-center w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent  '
+            className={`placeholder-blue-600 rounded-lg text-center w-11/12 shadow-inner shadow-black  focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input
             name='password'
             type='text'
             placeholder='Password'
-            className='placeholder-blue-600 rounded-lg text-center  w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent'
+            className='placeholder-blue-600 rounded-lg text-center  w-11/12 shadow-inner shadow-black ${valColor.pass} focus:outline-none focus:ring focus:ring-transparent'
             onChange={handleEventChange}
           />
         </div>

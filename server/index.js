@@ -113,21 +113,28 @@ app.post('/login', async (req, res) => {
       [username, password],
       (err, results) => {
         if (err) {
-          throw err;
+          console.log(err);
         }
-        console.log(results.rows);
         if (results.rows.length > 0) {
           //more than one user prevent user from useing that name.
+          const t = true;
+          res.send(t);
+
+          console.log('user found', { status: 'ok' });
         }
         if (results.rows.length === 0) {
-          console.log('user Not found');
+          // console.log('user Not found');
+          // console.log('user/password not found', { status: 'error' });
+          const n = 'user not found';
+          res.send(n);
         }
       }
     );
-    res.json({ status: 'ok' });
+    // res.json({ status: 'ok' });
+    // res.send(allAccounts.rows);
   } catch (err) {
     console.error(err.message);
-    console.log('user/password not found', { status: 'error' });
+    // console.log('user/password not found', { status: 'error' });
   }
 });
 app.post('/account', async (req, res) => {
