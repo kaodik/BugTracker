@@ -14,10 +14,10 @@ export default function LoginForm({ closeReg }: any) {
     username: '',
     password: '',
     email: '',
-    fname: '',
-    lname: '',
+    fname: 'First name',
+    lname: 'Last name',
     privilege: 'user',
-    org: 'N/A',
+    org: 'Testorg',
   });
   function handleEventChange(event: any) {
     const { value, name } = event.target;
@@ -109,6 +109,8 @@ export default function LoginForm({ closeReg }: any) {
     let regExpressPassword =
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
     let regExpressUsername = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    let mailformat =
+      /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     setValColor({
       user: 'bg-blue-300',
       pass: 'bg-blue-300',
@@ -122,7 +124,7 @@ export default function LoginForm({ closeReg }: any) {
       setValColor({
         user: 'bg-rose-300',
         pass: 'bg-rose-300',
-        email: 'bg-blue-300',
+        email: 'bg-rose-300',
         fname: 'bg-blue-300',
         lname: 'bg-blue-300',
         org: 'bg-blue-300',
@@ -165,6 +167,16 @@ export default function LoginForm({ closeReg }: any) {
         org: 'bg-blue-300',
       });
       alert('Username must not have special characters');
+    } else if (!mailformat.test(account.email)) {
+      setValColor({
+        user: 'bg-blue-300',
+        pass: 'bg-blue-300',
+        email: 'bg-rose-300',
+        fname: 'bg-blue-300',
+        lname: 'bg-blue-300',
+        org: 'bg-blue-300',
+      });
+      alert('Email is required in following format email@mail.com');
     } else {
       try {
         const body = account;
@@ -180,6 +192,7 @@ export default function LoginForm({ closeReg }: any) {
           body: JSON.stringify(body),
         });
         // window.location.reload();
+        alert('Registration was Successful');
         console.log(response);
       } catch (err) {
         console.error(err.message);
