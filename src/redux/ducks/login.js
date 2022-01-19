@@ -1,7 +1,6 @@
-// import { login } from './page';
-
 export const GET_LOGIN = 'GET_LOGIN';
 const SET_LOGIN = 'SET_LOGIN';
+const SET_LOGOUT = 'SET_LOGOUT';
 
 export const getLogin = (data) => ({
   type: GET_LOGIN,

@@ -96,7 +96,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className='ml-96 h-64 w-96 rounded-2xl shadow-lg shadow-blue-800'>
+    <div className=' h-[14.5rem] w-96 rounded-2xl shadow-lg shadow-blue-800'>
       <form
         action=''
         className='w-96 text-center rounded-xl p-3 flex flex-col  bg-transparent shadow-inner shadow-blue-300'
@@ -108,14 +108,14 @@ export default function LoginForm() {
             name='username'
             type='text'
             placeholder='Username'
-            className={`placeholder-blue-600 rounded-lg text-center w-11/12 shadow-inner shadow-black  focus:outline-none focus:ring focus:ring-transparent`}
+            className={`placeholder-blue-600 rounded-lg text-center w-11/12 shadow-inner shadow-black  focus:outline-none focus:ring focus:ring-transparent bg-blue-300`}
             onChange={handleEventChange}
           />
           <input
             name='password'
             type='text'
             placeholder='Password'
-            className='placeholder-blue-600 rounded-lg text-center  w-11/12 shadow-inner shadow-black ${valColor.pass} focus:outline-none focus:ring focus:ring-transparent'
+            className='placeholder-blue-600 rounded-lg text-center  w-11/12 shadow-inner shadow-black ${valColor.pass} focus:outline-none focus:ring focus:ring-transparent bg-blue-300'
             onChange={handleEventChange}
           />
         </div>
