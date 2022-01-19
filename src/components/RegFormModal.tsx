@@ -14,8 +14,8 @@ export default function LoginForm({ closeReg }: any) {
     username: '',
     password: '',
     email: '',
-    fname: 'First name',
-    lname: 'Last name',
+    fname: '',
+    lname: '',
     privilege: 'user',
     org: 'Testorg',
   });
@@ -125,8 +125,8 @@ export default function LoginForm({ closeReg }: any) {
         user: 'bg-rose-300',
         pass: 'bg-rose-300',
         email: 'bg-rose-300',
-        fname: 'bg-blue-300',
-        lname: 'bg-blue-300',
+        fname: 'bg-rose-300',
+        lname: 'bg-rose-300',
         org: 'bg-blue-300',
       });
       alert("User and password can't be blank");
@@ -177,6 +177,16 @@ export default function LoginForm({ closeReg }: any) {
         org: 'bg-blue-300',
       });
       alert('Email is required in following format email@mail.com');
+    } else if (account.fname === '' || account.lname === '') {
+      setValColor({
+        user: 'bg-blue-300',
+        pass: 'bg-blue-300',
+        email: 'bg-blue-300',
+        fname: 'bg-rose-300',
+        lname: 'bg-rose-300',
+        org: 'bg-blue-300',
+      });
+      alert('First name and Last name must be filled');
     } else {
       try {
         const body = account;
@@ -233,15 +243,15 @@ export default function LoginForm({ closeReg }: any) {
           <input
             name='fname'
             type='text'
-            placeholder='First Name'
-            className='placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent'
+            placeholder='*First Name'
+            className={`placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black ${valColor.fname} focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input
             name='lname'
             type='text'
-            placeholder='Last Name'
-            className='placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black bg-blue-300 focus:outline-none focus:ring focus:ring-transparent'
+            placeholder='*Last Name'
+            className={`placeholder-blue-600 rounded-lg pl-24  w-11/12 shadow-inner shadow-black ${valColor.lname} focus:outline-none focus:ring focus:ring-transparent`}
             onChange={handleEventChange}
           />
           <input

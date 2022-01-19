@@ -203,6 +203,7 @@ export default function bugModal({ closeModal }: any) {
                 className='text-blue-500 bg-blue-200 rounded-lg'
               >
                 <option label='' value=''></option>
+                {/* put user's name here as an input. */}
                 <option
                   value='Steven Trumblay'
                   label='Steven Trumblay'

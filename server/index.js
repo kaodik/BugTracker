@@ -108,7 +108,7 @@ app.post('/time', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
-    const allAccounts = await pool.query(
+    const auth = await pool.query(
       'SELECT * FROM account WHERE username= $1 AND password= $2',
       [username, password],
       (err, results) => {
@@ -117,6 +117,7 @@ app.post('/login', async (req, res) => {
         }
         if (results.rows.length > 0) {
           //more than one user prevent user from useing that name.
+          console.log(results.rows[0].account_id);
           const t = true;
           res.send(t);
 
@@ -130,6 +131,7 @@ app.post('/login', async (req, res) => {
         }
       }
     );
+    console.log(auth.rows[0]);
     // res.json({ status: 'ok' });
     // res.send(allAccounts.rows);
   } catch (err) {
