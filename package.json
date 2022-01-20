@@ -1,5 +1,5 @@
 {
-  "name": "webpack-tailwind-typescript-react",
+  "name": "bugtracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "heroku-postbuild": "webpack --mode production",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install"
   },
   "keywords": [],
   "author": "",
