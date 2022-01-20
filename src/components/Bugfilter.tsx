@@ -8,25 +8,26 @@ export default function Bugfilter() {
       {openModal && <Bugmodal closeModal={setOpenModal} />}
       <div>
         <div>
-          <h2 className='text-lx pb-2'>Bugfilter</h2>
+          <h2 className='text-lx pb-2'>Bug Page</h2>
         </div>
         <div className='flex flex-row'>
-          <label htmlFor=''>Status</label>{' '}
-          <div className='text-base pl-2 pt-1'>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>All</button>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>Open</button>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
-              In Progress
-            </button>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
-              Resolved
-            </button>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
-              Closed
-            </button>
-            <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>Open</button>
-          </div>
-          <span className='ml-auto bg-blue-700 text-right text-base p-2 rounded-full '>
+          {/* <label htmlFor=''>Status</label>{' '}
+            <div className='text-base pl-2 pt-1'>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>All</button>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>Open</button>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
+                In Progress
+              </button>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
+                Resolved
+              </button>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>
+                Closed
+              </button>
+              <button className='bg-blue-700 rounded-xl pl-2 pr-2 '>Open</button> */}
+          {/* </div> */}
+          {/* className='ml-auto bg-blue-700 text-right text-base p-2 rounded-full ' */}
+          <span className=' bg-blue-700 text-base p-2 rounded-full '>
             <button
               className='flex flex-row'
               onClick={() => {
@@ -51,7 +52,7 @@ export default function Bugfilter() {
             </button>
           </span>
         </div>
-        <div>
+        {/* <div>
           <form action=''>
             <div>
               <label htmlFor=''>Assignee</label>
@@ -66,7 +67,7 @@ export default function Bugfilter() {
               <option value='Steven Trumblay' label='Steven Trumblay'></option>
             </select>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

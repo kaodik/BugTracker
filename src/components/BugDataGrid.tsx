@@ -92,7 +92,7 @@ export default function BugDataGrid() {
               <span className='font-medium'>97</span> results
             </p>
           </div>
-          <div>
+          {/* <div>
             <nav
               className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
               aria-label='Pagination'
@@ -177,7 +177,7 @@ export default function BugDataGrid() {
                 </svg>
               </a>
             </nav>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
