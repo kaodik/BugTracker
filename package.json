@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "heroku-postbuild": "webpack -p"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
