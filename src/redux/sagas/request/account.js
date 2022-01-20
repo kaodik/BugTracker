@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-export function requestGetAccount() {
-  return axios.request({
-    method: 'GET',
-    url: 'http://localhost:5000/account',
-  });
+export function requestGetAccount(account) {
+  const body = account.data;
+  return axios.post('http://localhost:5000/currentUser', body);
 }

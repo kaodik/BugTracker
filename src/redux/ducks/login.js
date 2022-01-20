@@ -1,6 +1,5 @@
 export const GET_LOGIN = 'GET_LOGIN';
 const SET_LOGIN = 'SET_LOGIN';
-const SET_LOGOUT = 'SET_LOGOUT';
 
 export const getLogin = (data) => ({
   type: GET_LOGIN,
@@ -13,6 +12,7 @@ export const setLogin = (login) => ({
 // init state
 const initialState = {
   login: false,
+  data: null,
 };
 
 //reducer;
@@ -21,7 +21,16 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_LOGIN:
       const { login } = action;
-      return { ...state, login: (state.login = login) };
+      return {
+        ...state,
+        login: (state.login = login),
+      };
+    case GET_LOGIN:
+      const { data } = action;
+      return {
+        ...state,
+        data: (state.data = data),
+      };
     default:
       return state;
   }

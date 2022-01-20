@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import RegFormModal from './RegFormModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/configureStore';
-import axios, { Axios } from 'axios';
-import { response } from 'express';
 import { dashboard } from '../redux/ducks/page';
-import { requestPostLogin } from '../redux/sagas/request/login';
-import { handlePostLogin } from '../redux/sagas/handlers/login';
 import { getLogin } from '../redux/ducks/login';
 
 export default function LoginForm() {
@@ -57,7 +53,6 @@ export default function LoginForm() {
     e.preventDefault(); // this line prevents refreashing the page before all actions are complete
 
     try {
-      // dispatch(handlePostLogin(account));
       dispatch(getLogin(account));
 
       // const body = account;

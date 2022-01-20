@@ -1,14 +1,32 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/configureStore';
+import { getAccount } from '../redux/ducks/account';
 
 export default function BugStatus() {
+  const user = useSelector((state: RootState) => state.login);
+  const account = useSelector((state: RootState) => state.account.account);
   const bug = useSelector((state: RootState) => state.bug.bug);
-  const bugNameList = bug.filter(
-    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
+  useEffect(() => {
+    dispatch(getAccount(user.data));
+  }, []);
+  // console.log(user.data);
+  // console.log(account);
+  const dispatch = useDispatch();
+
+  // dispatch(getAccount(user.data));
+  // console.log(account);
+
+  const currentUser = account.map(
+    (bname: any) => bname.fname + ' ' + bname.lname
   );
+  const bugNameList = bug.filter(
+    (b: { assignee: string }) => b.assignee === currentUser[0]
+  );
+  console.log();
   return (
     <div className='w-[450px] text-blue-500 rounded-2xl bg-blue-500 p-2'>
+      {/* {account ? console.log(currentUser) : 'loading...'} */}
       <div className='flex flex-row justify-between'>
         <h2 className='text-lx pb-2 text-blue-200'>BugStatus</h2>
       </div>

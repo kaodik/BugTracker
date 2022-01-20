@@ -12,12 +12,15 @@ import { account, dashboard } from './redux/ducks/page';
 import Login from './pages/Login';
 
 export default function App() {
+  const user = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch();
+  // console.log(user.data);
   useEffect(() => {
     dispatch(getProject());
     dispatch(getBug());
     dispatch(getTime());
-    dispatch(getAccount());
+    // dispatch(getAccount());
+    // console.log(user.data + ' userdata');
     dispatch(getLogin());
   }, []);
   // const time = useSelector((state: RootState) => state.time.time);
@@ -25,7 +28,8 @@ export default function App() {
   // console.log(project);
   // const { pageTracker } = useSelector((state: RootState) => state);
   // console.log(useSelector((state) => state));
-  // const page = useSelector((state) => state);
+  // // const page = useSelector((state) => state);
+  // const user = useSelector((state: RootState) => state.login);
   const loginBool = useSelector((state: RootState) => state.login);
   const page = useSelector((state: RootState) => state.pageTracker.page);
   //const page = useSelector((state) => state.pages);
@@ -42,6 +46,7 @@ export default function App() {
   // to get the data
   //const user = userSelector((state)=> state.user.user);
   //console.log(user);
+  // console.log(loginBool.data); // this gets the data that was entered from.
   const handlePage = (prop: any) => {
     dispatch(prop);
   };

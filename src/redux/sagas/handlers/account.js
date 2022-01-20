@@ -4,7 +4,7 @@ import { setAccount } from '../../ducks/account';
 
 export function* handleGetAccount(action) {
   try {
-    const response = yield call(requestGetAccount);
+    const response = yield call(requestGetAccount, action);
     const { data } = response;
     yield put(setAccount(data));
   } catch (error) {
