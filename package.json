@@ -8,8 +8,9 @@
     "npm": "8.3.1"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --mode production"
+    "dev": "webpack-dev-server",
+    "heroku-postbuild": "webpack --mode production",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
