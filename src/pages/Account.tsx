@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
+import login from '../redux/ducks/login';
 
 export default function Account() {
   // const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   const [read, setRead] = useState(true);
-  const [account, setAccount] = useState({
-    username: '',
-    password: '',
-    org: 'Open',
-    email: 'Frontend',
+  const loginUser = useSelector((state: RootState) => state.account.account);
+  console.log(loginUser[0]);
+  const [userAccount, setUserAccount] = useState({
+    username: loginUser[0].username,
+    password: loginUser[0].password,
+    org: loginUser[0].org,
+    email: loginUser[0].email,
   });
   function handleEventChange(event: any) {
     const { value, name } = event.target;
     // console.log(bug);
     // console.log(value);
     // console.log(name);
-    setAccount((prevValue) => {
+    setUserAccount((prevValue) => {
       switch (name) {
         case 'username':
           return {
@@ -26,7 +31,7 @@ export default function Account() {
           };
         case 'password':
           return {
-            username: prevValue.password,
+            username: prevValue.username,
             password: value,
             org: prevValue.org,
             email: prevValue.email,
@@ -83,10 +88,12 @@ export default function Account() {
           <form action='' onSubmit={handleFormSubmission}>
             <div className='pb-5'>
               <label htmlFor=''>User Name: </label>
+
               <div className='text-right'>
                 <input
                   name='username'
                   type='text'
+                  value={userAccount.username}
                   className={`rounded-md w-8/12 ${
                     read ? 'bg-slate-400' : null
                   }`}
@@ -101,6 +108,7 @@ export default function Account() {
                 <input
                   name='password'
                   type='text'
+                  value={userAccount.password}
                   className={`rounded-md w-8/12 ${
                     read ? 'bg-slate-400' : null
                   }`}
@@ -115,6 +123,7 @@ export default function Account() {
                 <input
                   name='org'
                   type='text'
+                  value={userAccount.org}
                   className={`rounded-md w-8/12 ${
                     read ? 'bg-slate-400' : null
                   }`}
@@ -129,6 +138,7 @@ export default function Account() {
                 <input
                   name='email'
                   type='text'
+                  value={userAccount.email}
                   className={`rounded-md w-8/12 ${
                     read ? 'bg-slate-400' : null
                   }`}
@@ -137,6 +147,7 @@ export default function Account() {
                 />
               </div>
             </div>
+
             <div className='pl-3 pt-5 text-center space-x-10 text-black'>
               <button
                 className='bg-amber-400 font-bold text-2xl rounded-md pl-2 pr-2'

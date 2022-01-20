@@ -10,12 +10,8 @@ export default function BugStatus() {
   useEffect(() => {
     dispatch(getAccount(user.data));
   }, []);
-  // console.log(user.data);
-  // console.log(account);
-  const dispatch = useDispatch();
 
-  // dispatch(getAccount(user.data));
-  // console.log(account);
+  const dispatch = useDispatch();
 
   const currentUser = account.map(
     (bname: any) => bname.fname + ' ' + bname.lname
