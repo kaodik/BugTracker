@@ -49,7 +49,13 @@ export default function BugDataGrid() {
             </tr>
             {bug
               ? bug.map((bugData: any) => (
-                  <tr className='table-row bg-blue-200 boarder-t'>
+                  <tr
+                    className={
+                      bugData.bug_id % 2 === 0
+                        ? 'table-row bg-blue-300 boarder-t'
+                        : 'table-row bg-blue-200 boarder-t'
+                    }
+                  >
                     <td>{bugData.subject}</td>
                     <td>{bugData.assignee}</td>
                     <td>{bugData.status}</td>

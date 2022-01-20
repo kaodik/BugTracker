@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/configureStore';
+import { getAccount, updateAccount } from '../redux/ducks/account';
 import login from '../redux/ducks/login';
 
 export default function Account() {
-  // const dispatch = useDispatch();
-  // const [name, setName] = useState('');
+  const dispatch = useDispatch();
   const [read, setRead] = useState(true);
   const loginUser = useSelector((state: RootState) => state.account.account);
-  console.log(loginUser[0]);
   const [userAccount, setUserAccount] = useState({
     username: loginUser[0].username,
     password: loginUser[0].password,
     org: loginUser[0].org,
     email: loginUser[0].email,
+    account_id: loginUser[0].account_id,
   });
   function handleEventChange(event: any) {
     const { value, name } = event.target;
@@ -28,6 +28,7 @@ export default function Account() {
             password: prevValue.password,
             org: prevValue.org,
             email: prevValue.email,
+            account_id: prevValue.account_id,
           };
         case 'password':
           return {
@@ -35,6 +36,7 @@ export default function Account() {
             password: value,
             org: prevValue.org,
             email: prevValue.email,
+            account_id: prevValue.account_id,
           };
         case 'org':
           return {
@@ -42,6 +44,7 @@ export default function Account() {
             password: prevValue.password,
             org: value,
             email: prevValue.email,
+            account_id: prevValue.account_id,
           };
         case 'email':
           return {
@@ -49,6 +52,7 @@ export default function Account() {
             password: prevValue.password,
             org: prevValue.org,
             email: value,
+            account_id: prevValue.account_id,
           };
         default:
           break;
@@ -81,8 +85,8 @@ export default function Account() {
     // dispatch(getProject());
   };
   return (
-    <div className='w-[99%] h-[90%] bg-blue-200 absolute -translate-x-64 flex justify-center items-center'>
-      <div className='w-[500px]  -translate-y-28 rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
+    <div className='w-[102%] h-[100%] bg-blue-200 absolute -translate-y-10 -translate-x-64 flex justify-center items-center'>
+      <div className='w-[500px]  -translate-y-3 rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <div>
           <div className='pt-3 pb-9 text-center text-4xl'>Account Settings</div>
           <form action='' onSubmit={handleFormSubmission}>
@@ -155,7 +159,10 @@ export default function Account() {
               >
                 Change
               </button>
-              <button className='bg-emerald-400 font-bold text-2xl rounded-md pl-2 pr-2'>
+              <button
+                className='bg-emerald-400 font-bold text-2xl rounded-md pl-2 pr-2'
+                onClick={() => dispatch(updateAccount(userAccount))}
+              >
                 Submit
               </button>
             </div>

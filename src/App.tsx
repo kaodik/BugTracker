@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { Sidemenu } from './components/Sidemenu';
-import Navbar, { NavItem, DropdownMenu } from './components/Navbar';
+import Navbar, {
+  NavItem,
+  DropdownAlertMenu,
+  DropdownPinnedMenu,
+} from './components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/configureStore';
 import { getProject } from './redux/ducks/project';
-import { getBug } from './redux/ducks/bug';
+import bug, { getBug } from './redux/ducks/bug';
 import { getTime } from './redux/ducks/time';
 import { getAccount } from './redux/ducks/account';
 import { getLogin, setLogin } from './redux/ducks/login';
@@ -94,7 +98,7 @@ export default function App() {
           }
           label={'Alert'}
         >
-          <DropdownMenu />
+          <DropdownAlertMenu />
         </NavItem>
 
         <NavItem
@@ -116,7 +120,7 @@ export default function App() {
           }
           label={'Pinned'}
         >
-          <DropdownMenu />
+          <DropdownPinnedMenu />
         </NavItem>
         <NavItem
           icon={

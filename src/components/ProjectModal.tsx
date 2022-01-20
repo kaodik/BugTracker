@@ -34,7 +34,7 @@ export default function ProjectModal({ closeModal }: any) {
   };
 
   return (
-    <div className='w-[99%] h-[90%] bg-blue-200 absolute -translate-x-64 -translate-y-56 flex justify-center items-center'>
+    <div className='w-[102%] h-[100%] bg-blue-900 absolute -translate-x-64 -translate-y-[3rem] flex justify-center items-center'>
       <div className='w-[500px] h-[300px] rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <button
           onClick={() => closeModal(false)}

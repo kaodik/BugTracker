@@ -9,6 +9,7 @@ export default function Projects() {
 
   return (
     <div className='w-96 text-blue-200 rounded-2xl bg-blue-500 p-2'>
+      {openModal && <ProjectModal closeModal={setOpenModal} />}
       <div className='flex flex-row justify-between'>
         <h2 className='text-lx pb-2'>Projects</h2>
         <button onClick={() => setOpenModal(!openModal)}>
@@ -35,7 +36,6 @@ export default function Projects() {
             : 'loading...'}
         </div>
       </>
-      {openModal && <ProjectModal closeModal={setOpenModal} />}
     </div>
   );
 }

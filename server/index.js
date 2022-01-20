@@ -92,11 +92,12 @@ app.get('/time', async (req, res) => {
 app.post('/time', async (req, res) => {
   try {
     // test the post with thunder and this line of code  res.json(req.body)
-    const { bugname, startdate, starttime, enddate, endtime } = req.body;
+    const { user_id, bugname, startdate, starttime, enddate, endtime } =
+      req.body;
     const newTime = await pool.query(
-      'INSERT INTO time(bugname, startdate, starttime, enddate, endtime) VALUES' +
-        '($1,$2,$3,$4,$5) RETURNING *',
-      [bugname, startdate, starttime, enddate, endtime]
+      'INSERT INTO time(user_id,bugname, startdate, starttime, enddate, endtime) VALUES' +
+        '($1,$2,$3,$4,$5,$6) RETURNING *',
+      [user_id, bugname, startdate, starttime, enddate, endtime]
     );
 
     res.json(newTime.rows[0]);
@@ -169,13 +170,13 @@ app.post('/currentUser', async (req, res) => {
 });
 app.put('/currentUser', async (req, res) => {
   try {
-    const { id } = req.params;
-    const { description } = req.body;
-    const updateTodo = await pool.query(
-      'UPDATE account SET description = $1 WHERE todo_id = $2',
-      [description, id]
+    const { username, password, org, email, account_id } = req.body;
+
+    const updateAccount = await pool.query(
+      'UPDATE account SET username= $1, password= $2, org= $3, email= $4 WHERE account_id = $5',
+      [username, password, org, email, account_id]
     );
-    res.json('Todo was updated');
+    // res.json(updateAccount);
   } catch (err) {
     console.error(err.message);
   }

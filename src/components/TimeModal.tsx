@@ -6,6 +6,9 @@ import { getTime } from '../redux/ducks/time';
 export default function ProjectModal({ closeModal }: any) {
   const dispatch = useDispatch();
 
+  const account = useSelector((state: RootState) => state.account.account);
+  const currentUser = account.map((bname: any) => bname.account_id);
+  console.log(account);
   const bug = useSelector((state: RootState) => state.bug.bug);
   const bugNameList = bug.filter(
     (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
@@ -17,6 +20,7 @@ export default function ProjectModal({ closeModal }: any) {
     starttime: 'None',
     enddate: 'None',
     endtime: 'None',
+    user_id: currentUser[0],
   });
   function handleEventChange(event: any) {
     const { value, name } = event.target;
@@ -29,6 +33,7 @@ export default function ProjectModal({ closeModal }: any) {
             starttime: prevValue.starttime,
             enddate: prevValue.enddate,
             endtime: prevValue.endtime,
+            user_id: prevValue.user_id,
           };
         case 'startdate':
           return {
@@ -37,6 +42,7 @@ export default function ProjectModal({ closeModal }: any) {
             starttime: prevValue.starttime,
             enddate: prevValue.enddate,
             endtime: prevValue.endtime,
+            user_id: prevValue.user_id,
           };
         case 'starttime':
           return {
@@ -45,6 +51,7 @@ export default function ProjectModal({ closeModal }: any) {
             starttime: value,
             enddate: prevValue.enddate,
             endtime: prevValue.endtime,
+            user_id: prevValue.user_id,
           };
         case 'enddate':
           return {
@@ -53,6 +60,7 @@ export default function ProjectModal({ closeModal }: any) {
             starttime: prevValue.starttime,
             enddate: value,
             endtime: prevValue.endtime,
+            user_id: prevValue.user_id,
           };
         case 'endtime':
           return {
@@ -61,6 +69,7 @@ export default function ProjectModal({ closeModal }: any) {
             starttime: prevValue.starttime,
             enddate: prevValue.enddate,
             endtime: value,
+            user_id: prevValue.user_id,
           };
         default:
           break;
@@ -91,7 +100,7 @@ export default function ProjectModal({ closeModal }: any) {
   };
 
   return (
-    <div className='w-[99%] h-[90%] bg-blue-200 absolute -translate-x-64 flex justify-center items-center text-blue-200'>
+    <div className='w-[102%] h-[100%] bg-blue-200 absolute -translate-x-64 -translate-y-[2.5rem] flex justify-center items-center text-blue-200'>
       <div className='w-[500px] rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
         <button
           onClick={() => closeModal(false)}

@@ -5,6 +5,7 @@ export default function Bugfilter() {
 
   return (
     <div className='w-full text-blue-200 rounded-2xl bg-blue-500 p-2'>
+      {openModal && <Bugmodal closeModal={setOpenModal} />}
       <div>
         <div>
           <h2 className='text-lx pb-2'>Bugfilter</h2>
@@ -67,8 +68,6 @@ export default function Bugfilter() {
           </form>
         </div>
       </div>
-
-      {openModal && <Bugmodal closeModal={setOpenModal} />}
     </div>
   );
 }

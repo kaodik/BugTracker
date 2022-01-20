@@ -1,5 +1,6 @@
 export const GET_ACCOUNT = 'GET_ACCOUNT';
 const SET_ACCOUNT = 'SET_ACCOUNT';
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 
 export const getAccount = (data) => ({
   type: GET_ACCOUNT,
@@ -8,6 +9,10 @@ export const getAccount = (data) => ({
 export const setAccount = (account) => ({
   type: SET_ACCOUNT,
   account: account,
+});
+export const updateAccount = (data) => ({
+  type: UPDATE_ACCOUNT,
+  data: data,
 });
 // init state
 const initialState = {

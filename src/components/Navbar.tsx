@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/configureStore';
 
 export default function Navbar(props: any) {
-  const bug = useSelector((state: RootState) => state.bug.bug);
-  const bugNameList = bug.filter(
-    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
-  );
   return (
     <nav className='Navbar flex justify-between bg-blue-700 h-14'>
       <a
@@ -55,10 +51,14 @@ function NavItem(props: any) {
   );
 }
 
-function DropdownMenu() {
+function DropdownAlertMenu() {
+  const bug = useSelector((state: RootState) => state.bug.bug);
+  const bugNameList = bug.filter(
+    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
+  );
   function DropdownItem(props: any) {
     return (
-      <a href='#' className='menu-item h-14 flex items-center p-0.5'>
+      <a href='#' className='menu-item h-14 flex items-center p-0.5 space-x-2'>
         <span className='icon-button'>{props.leftIcon}</span>
         {props.children}
         <span className='icon-right'>{props.rightIcon}</span>
@@ -67,26 +67,85 @@ function DropdownMenu() {
   }
   return (
     <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400'>
-      <DropdownItem
-        leftIcon={
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-8 w-8'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
-            />
-          </svg>
-        }
-      ></DropdownItem>
+      {/* //keep calling here */}
+      {bug
+        ? bugNameList
+            .slice(1)
+            .slice(-5)
+            .reverse()
+            .map((bname: any) => (
+              <DropdownItem
+                leftIcon={
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-8 w-8'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
+                    />
+                  </svg>
+                }
+                rightIcon={'New Task Priority: ' + bname.priority}
+              />
+            ))
+        : 'loading...'}
+    </div>
+  );
+}
+function DropdownPinnedMenu() {
+  const bug = useSelector((state: RootState) => state.bug.bug);
+  const bugNameList = bug.filter(
+    (b: { assignee: string }) => b.assignee === 'Steven Trumblay'
+  );
+  function DropdownItem(props: any) {
+    return (
+      <a href='#' className='menu-item h-14 flex items-center p-0.5 space-x-2'>
+        <span className='icon-button'>{props.leftIcon}</span>
+        {props.children}
+        <span className='icon-right'>{props.rightIcon}</span>
+      </a>
+    );
+  }
+  return (
+    <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400'>
+      {/* //keep calling here */}
+      {/* {bug
+        ? bugNameList
+            .slice(1)
+            .slice(-5)
+            .reverse()
+            .map((bname: any) => (
+              <DropdownItem
+                leftIcon={
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-8 w-8'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
+                    />
+                  </svg>
+                }
+                rightIcon={'New Task Priority: ' + bname.priority}
+              />
+            )) 
+              />
+              : 'loading...'}*/}
+      <DropdownItem leftIcon={''} rightIcon={'thank you for viewing my site'} />
     </div>
   );
 }
 
-export { NavItem, DropdownMenu };
+export { NavItem, DropdownAlertMenu, DropdownPinnedMenu };

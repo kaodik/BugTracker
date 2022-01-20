@@ -5,30 +5,56 @@ import { RootState } from '../redux/configureStore';
 
 export default function TimeSheet() {
   const time = useSelector((state: RootState) => state.time.time);
-
+  const account = useSelector((state: RootState) => state.account.account);
+  const currentUser = account.map((bname: any) => bname.account_id);
+  console.log(currentUser[0]);
+  console.log(
+    // time.map(
+    //   (time: { user_id: string; startdate: string }) =>
+    //     time.user_id + time.startdate
+    // )
+    time.filter(
+      (day: { startdate: string; user_id: string }) =>
+        new Date(day.startdate).getDay() === 0
+    )
+  );
   const [openModal, setOpenModal] = useState(false);
 
   //Filters---------------------------------------------------------------
   const mon = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 0
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 0 &&
+      day.user_id === `${currentUser[0]}`
   );
   const tue = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 1
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 1 &&
+      day.user_id === `${currentUser[0]}`
   );
   const wen = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 2
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 2 &&
+      day.user_id === `${currentUser[0]}`
   );
   const thur = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 3
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 3 &&
+      day.user_id === `${currentUser[0]}`
   );
   const fri = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 4
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 4 &&
+      day.user_id === `${currentUser[0]}`
   );
   const sat = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 5
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 5 &&
+      day.user_id === `${currentUser[0]}`
   );
   const sun = time.filter(
-    (day: { startdate: string }) => new Date(day.startdate).getDay() === 6
+    (day: { startdate: string; user_id: string }) =>
+      new Date(day.startdate).getDay() === 6 &&
+      day.user_id === `${currentUser[0]}`
   );
 
   return (
