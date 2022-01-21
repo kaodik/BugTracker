@@ -196,7 +196,7 @@ export default function LoginForm({ closeReg }: any) {
         //holding the restful api.
 
         //https://pern-todo-app-demo.herokuapp.com/todos
-        const response = await fetch('http://localhost:5000/account', {
+        const response = await fetch('/account', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),

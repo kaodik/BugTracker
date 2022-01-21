@@ -148,7 +148,7 @@ export default function bugModal({ closeModal }: any) {
       //holding the restful api.
 
       //https://pern-todo-app-demo.herokuapp.com/todos
-      const response = await fetch('http://localhost:5000/bug', {
+      const response = await fetch('/bug', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
