@@ -9,7 +9,7 @@ import axios from 'axios';
 
 export function requestPostLogin(account) {
   const body = account.data;
-  return axios.post('http://localhost:5000/login', body);
+  return axios.post('/login', body);
   //   .then((t) => {
   //     console.log(t.data);
   //     if (t.data === true) {
