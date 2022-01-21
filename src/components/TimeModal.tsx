@@ -119,7 +119,7 @@ export default function ProjectModal({ closeModal }: any) {
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
-                className='text-blue-500 bg-blue-200 rounded-lg'
+                className='text-blue-500 bg-blue-200 rounded-lg pl-2'
               >
                 {bug
                   ? bugNameList.map((bname: any) => (
@@ -138,7 +138,7 @@ export default function ProjectModal({ closeModal }: any) {
               <input
                 name='startdate'
                 type='date'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
                 onChange={handleEventChange}
               />
             </div>
@@ -147,7 +147,7 @@ export default function ProjectModal({ closeModal }: any) {
               <input
                 name='starttime'
                 type='time'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
                 onChange={handleEventChange}
               />
             </div>
@@ -158,7 +158,7 @@ export default function ProjectModal({ closeModal }: any) {
               <input
                 name='enddate'
                 type='date'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
                 onChange={handleEventChange}
               />
             </div>
@@ -169,7 +169,7 @@ export default function ProjectModal({ closeModal }: any) {
               <input
                 name='endtime'
                 type='time'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
                 onChange={handleEventChange}
               />
             </div>

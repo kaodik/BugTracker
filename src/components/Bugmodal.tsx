@@ -180,17 +180,25 @@ export default function bugModal({ closeModal }: any) {
                 name='subject'
                 onChange={handleEventChange}
                 type='text'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
               />
             </div>
             <div className='pb-5'>
               <label htmlFor=''>Description: </label>
-              <input
+              <textarea
+                name='description'
+                id=''
+                onChange={handleEventChange}
+                cols={30}
+                rows={5}
+                className='rounded-md text-blue-500 pl-2'
+              ></textarea>
+              {/* <input
                 name='description'
                 onChange={handleEventChange}
                 type='text'
                 className='rounded-md'
-              />
+              /> */}
             </div>
             <div className='pb-5'>
               <label className='pr-3' htmlFor=''>
@@ -201,7 +209,7 @@ export default function bugModal({ closeModal }: any) {
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
-                className='text-blue-500 bg-blue-200 rounded-lg'
+                className='text-blue-500 bg-blue-200 rounded-lg pl-2'
               >
                 <option label='' value=''></option>
                 {/* put user's name here as an input. */}
@@ -220,7 +228,7 @@ export default function bugModal({ closeModal }: any) {
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
-                className='text-blue-500 bg-blue-200 rounded-lg'
+                className='text-blue-500 bg-blue-200 rounded-lg pl-2'
               >
                 <option value='Open' label='Open'></option>
                 <option value='Inprogress' label='Inprogress'></option>
@@ -236,7 +244,7 @@ export default function bugModal({ closeModal }: any) {
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
-                className='text-blue-500 bg-blue-200 rounded-lg'
+                className='text-blue-500 bg-blue-200 rounded-lg pl-2'
               >
                 <option value='High' label='High'></option>
                 <option value='Medium' label='Medium'></option>
@@ -251,7 +259,7 @@ export default function bugModal({ closeModal }: any) {
                 onChange={handleEventChange}
                 id=''
                 placeholder='All'
-                className='text-blue-500 bg-blue-200 rounded-lg'
+                className='text-blue-500 bg-blue-200 rounded-lg pl-2'
               >
                 <option value='Frontend' label='Frontend'></option>
                 <option value='Backend' label='Backend'></option>
@@ -265,7 +273,7 @@ export default function bugModal({ closeModal }: any) {
                 name='duedate'
                 onChange={handleEventChange}
                 type='date'
-                className='rounded-md text-center'
+                className='rounded-md text-center text-blue-500 pl-2'
               />
             </div>
             <div className='pl-3 pt-5 text-center space-x-10 text-black'>

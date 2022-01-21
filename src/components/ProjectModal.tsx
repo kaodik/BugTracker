@@ -50,7 +50,7 @@ export default function ProjectModal({ closeModal }: any) {
               <label htmlFor=''>Name: </label>
               <input
                 type='text'
-                className='rounded-md'
+                className='rounded-md text-blue-500 pl-2'
                 onChange={handleEventChange}
                 value={name}
               />
