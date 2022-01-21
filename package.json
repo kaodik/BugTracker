@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "start": "node index.js",
-    "heroku-postbuild": "webpack --mode=production",
+    "heroku-postbuild": "npx webpack",
     "dev1": "webpack serve"
   },
   "keywords": [],
