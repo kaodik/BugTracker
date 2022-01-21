@@ -62,7 +62,7 @@ export default function TimeSheet() {
       {openModal && <TimeModal closeModal={setOpenModal} />}
       <div className=' w-[1400px] text-blue-200 rounded-2xl bg-blue-500'>
         <div className='flex flex-row pt-2 pl-2 '>
-          <h2 className='text-lx pr-20'>TimeSheet</h2>
+          <h2 className='text-lx pr-20'>Time Sheet</h2>
 
           <button
             onClick={() => {
@@ -93,7 +93,9 @@ export default function TimeSheet() {
             {time
               ? sun.map((sunData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
+                    <input type='checkbox' />
                     {sunData.bugname}
+
                     <p className='text-sm'>Start Time: {sunData.starttime}</p>
                     <p className='text-sm'>Start End: {sunData.endtime}</p>
                   </div>
@@ -105,7 +107,9 @@ export default function TimeSheet() {
             {time
               ? mon.map((monData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {monData.bugname}
+                    <input type='checkbox' className='p-10' />
+                    {' ' + monData.bugname}
+
                     <p className='text-sm'>Start Time: {monData.starttime}</p>
                     <p className='text-sm'>Start End: {monData.endtime}</p>
                   </div>
@@ -117,7 +121,9 @@ export default function TimeSheet() {
             {time
               ? tue.map((tueData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {tueData.bugname}
+                    <input type='checkbox' />
+                    {' ' + tueData.bugname}
+
                     <p className='text-sm'>Start Time: {tueData.starttime}</p>
                     <p className='text-sm'>Start End: {tueData.endtime}</p>
                   </div>
@@ -129,7 +135,9 @@ export default function TimeSheet() {
             {time
               ? wen.map((wenData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {wenData.bugname}
+                    <input type='checkbox' />
+                    {' ' + wenData.bugname}
+
                     <p className='text-sm'>Start Time: {wenData.starttime}</p>
                     <p className='text-sm'>Start End: {wenData.endtime}</p>
                   </div>
@@ -141,7 +149,9 @@ export default function TimeSheet() {
             {time
               ? thur.map((thurData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {thurData.bugname}
+                    <input type='checkbox' />
+                    {' ' + thurData.bugname}
+
                     <p className='text-sm'>Start Time: {thurData.starttime}</p>
                     <p className='text-sm'>Start End: {thurData.endtime}</p>
                   </div>
@@ -153,7 +163,9 @@ export default function TimeSheet() {
             {time
               ? fri.map((friData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {friData.bugname}
+                    <input type='checkbox' />
+                    {' ' + friData.bugname}
+
                     <p className='text-sm'>Start Time: {friData.starttime}</p>
                     <p className='text-sm'>Start End: {friData.endtime}</p>
                   </div>
@@ -165,7 +177,9 @@ export default function TimeSheet() {
             {time
               ? sat.map((satData: any) => (
                   <div className='rounded-xl h-20 bg-blue-200 m-2'>
-                    {satData.bugname}
+                    <input type='checkbox' />
+                    {' ' + satData.bugname}
+
                     <p className='text-sm'>Start Time: {satData.starttime}</p>
                     <p className='text-sm'>Start End: {satData.endtime}</p>
                   </div>

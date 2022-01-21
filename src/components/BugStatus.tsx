@@ -24,7 +24,7 @@ export default function BugStatus() {
     <div className='w-[450px] text-blue-500 rounded-2xl bg-blue-500 p-2'>
       {/* {account ? console.log(currentUser) : 'loading...'} */}
       <div className='flex flex-row justify-between'>
-        <h2 className='text-lx pb-2 text-blue-200'>BugStatus</h2>
+        <h2 className='text-lx pb-2 text-blue-200'>Bug Status</h2>
       </div>
       <div className='border-2 rounded border-blue-400 bg-blue-50 text-center'>
         <table className='w-full'>

@@ -26,7 +26,7 @@ export default function Piegraph() {
   return (
     <div className='text-blue-200 rounded-2xl bg-blue-500 p-2 w-[40rem]'>
       <div>
-        <h2 className='text-lx pb-2'>Bug status graph</h2>
+        <h2 className='text-lx pb-2'>Bug Status Graph</h2>
         <div>
           <Pie
             data={{
@@ -60,7 +60,7 @@ export default function Piegraph() {
             }}
           />
         </div>
-        <h2 className='text-lx pb-2 pt-4'>Stack Status graph</h2>
+        <h2 className='text-lx pb-2 pt-4'>Stack Status Graph</h2>
         <div className=''>
           <Pie
             data={{

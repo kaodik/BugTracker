@@ -42,7 +42,7 @@ export default function ReportStats() {
   return (
     <div className='w-4/6 text-blue-500 rounded-2xl bg-blue-500 p-2 h-[28rem]'>
       <div className='flex flex-row justify-between'>
-        <h2 className='text-lx pb-2 text-blue-200'>ReportsStats</h2>
+        <h2 className='text-lx pb-2 text-blue-200'>Reports Statistics</h2>
       </div>
       <div className=''>
         <table className='text-left bg-blue-200 h-96 w-full rounded-xl '>

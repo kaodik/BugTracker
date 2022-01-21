@@ -110,7 +110,7 @@ export default function ProjectModal({ closeModal }: any) {
           X
         </button>
         <div>
-          <div className='pt-9 pb-3'>TimeSheet Form</div>
+          <div className='pt-9 pb-3'>Time Sheet Form</div>
           <form action='' onSubmit={handleFormSubmission}>
             <div className='pb-2'>
               <label htmlFor=''>Bug Name: </label>
