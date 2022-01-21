@@ -20,33 +20,6 @@ export default function BugDataGrid() {
             <th>Due date</th>
           </thead>
           <tbody className='text-sm pl-2 table-row-group text-center'>
-            <tr className='table-row bg-blue-200'>
-              <td>Accounting reports shows inaccurate totals</td>
-              <td>Steven Trumblay</td>
-              <td>Open</td>
-              <td>Priority high</td>
-              <td>Sep 25, 2022</td>
-              <td></td>
-              <td>dec 25, 2022</td>
-            </tr>
-            <tr className='table-row '>
-              <td>NavBar has typos</td>
-              <td>Steven Trumblay</td>
-              <td>Open</td>
-              <td>Priority low</td>
-              <td>Sep 25, 2022</td>
-              <td></td>
-              <td>dec 25, 2022</td>
-            </tr>
-            <tr className='table-row bg-blue-200 boarder-t'>
-              <td>report page link broken</td>
-              <td>Steven Trumblay</td>
-              <td>Open</td>
-              <td>Priority high</td>
-              <td>Sep 25, 2022</td>
-              <td></td>
-              <td>dec 25, 2022</td>
-            </tr>
             {bug
               ? bug.map((bugData: any) => (
                   <tr
