@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/configureStore';
 import { getBug } from '../redux/ducks/bug';
 
 export default function bugModal({ closeModal }: any) {
   const dispatch = useDispatch();
   const d = new Date();
+  const account = useSelector((state: RootState) => state.account.account);
   const [bug, setBug] = useState({
     subject: '',
     description: '',
@@ -162,6 +164,9 @@ export default function bugModal({ closeModal }: any) {
     dispatch(getBug());
     // console.log(bugs);
   };
+  const currentUser = account.map(
+    (bname: any) => bname.fname + ' ' + bname.lname
+  );
   return (
     <div className='w-[110%] h-[100%] bg-blue-200 absolute -translate-x-64 -translate-y-[3rem] flex justify-center items-center'>
       <div className='w-[500px]  rounded-xl bg-blue-500  shadow-lg shadow-slate-900 flex flex-col p-6'>
@@ -213,10 +218,7 @@ export default function bugModal({ closeModal }: any) {
               >
                 <option label='' value=''></option>
                 {/* put user's name here as an input. */}
-                <option
-                  value='Steven Trumblay'
-                  label='Steven Trumblay'
-                ></option>
+                <option value={currentUser[0]} label={currentUser[0]}></option>
               </select>
             </div>
             <div className='pb-5'>
