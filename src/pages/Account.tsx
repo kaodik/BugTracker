@@ -78,6 +78,7 @@ export default function Account() {
         body: JSON.stringify(body),
       });
       // window.location.reload();
+      alert('Account was changed');
       console.log(response);
     } catch (err) {
       console.error(err.message);

@@ -279,7 +279,7 @@ export const Sidemenu: React.FC = () => {
                 href='#'
                 className='flex px-4 hover:bg-blue-800 transition duration-500 rounded'
               >
-                alert
+                Alert
               </a>
               <a
                 href='#'
@@ -288,7 +288,7 @@ export const Sidemenu: React.FC = () => {
                   handlePage(bug());
                 }}
               >
-                account
+                Account
               </a>
             </div>
           </nav>

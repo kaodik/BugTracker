@@ -66,7 +66,7 @@ function DropdownAlertMenu() {
     );
   }
   return (
-    <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400'>
+    <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400 border-2 border-t-blue-400 border-b-blue-500 border-l-blue-500 border-r-blue-500'>
       {/* //keep calling here */}
       {bug
         ? bugNameList
@@ -113,7 +113,7 @@ function DropdownPinnedMenu() {
     );
   }
   return (
-    <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400'>
+    <div className='dropdown absolute top-14 w-80 -translate-x-12 p-1 overflow-hidden bg-blue-400 border-2 border-t-blue-400 border-b-blue-500 border-l-blue-500 border-r-blue-500'>
       {/* //keep calling here */}
       {/* {bug
         ? bugNameList
@@ -143,7 +143,10 @@ function DropdownPinnedMenu() {
             )) 
               />
               : 'loading...'}*/}
-      <DropdownItem leftIcon={''} rightIcon={'thank you for viewing my site'} />
+      <DropdownItem
+        leftIcon={''}
+        rightIcon={'Thank you for visting my site!'}
+      />
     </div>
   );
 }

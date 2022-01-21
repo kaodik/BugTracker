@@ -22,16 +22,16 @@ export default function ReportStats() {
   );
   const closeb = bug.filter(
     (b: { category: string; status: string }) =>
-      b.category === 'Backend' && b.status === 'Open'
+      b.category === 'Backend' && b.status === 'Close'
   );
   const openb = bug.filter(
     (b: { category: string; status: string }) =>
-      b.category === 'Backend' && b.status === 'Close'
+      b.category === 'Backend' && b.status === 'Open'
   );
   let openfCount = openf.length;
   let closefCount = closef.length;
   let inprogfCount = inprogf.length;
-  let openbCount = inprogb.length;
+  let openbCount = openb.length;
   let closebCount = closeb.length;
   let inprogbCount = inprogb.length;
 

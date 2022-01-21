@@ -26,6 +26,7 @@ export default function ProjectModal({ closeModal }: any) {
         body: JSON.stringify(body),
       });
       // window.location.reload();
+      alert('Project was submitted');
       console.log(response);
     } catch (err) {
       console.error(err.message);

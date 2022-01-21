@@ -154,6 +154,7 @@ export default function bugModal({ closeModal }: any) {
         body: JSON.stringify(body),
       });
       // window.location.reload();
+      alert('Bug was submitted');
       console.log(response);
     } catch (err) {
       console.error(err.message);

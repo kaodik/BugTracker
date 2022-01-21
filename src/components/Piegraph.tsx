@@ -30,7 +30,7 @@ export default function Piegraph() {
         <div>
           <Pie
             data={{
-              labels: ['Closed', 'Inprogress', 'Open'],
+              labels: ['Closed', 'In Progress', 'Open'],
               datasets: [
                 {
                   label: 'My First Dataset',
