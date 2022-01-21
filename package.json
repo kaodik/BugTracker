@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "heroku-postbuild": "npx webpack",
     "dev1": "webpack serve"
   },
